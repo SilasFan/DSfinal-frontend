@@ -6,8 +6,9 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import Navbar from "./Navbar.vue";
+import { Component, Vue } from "vue-property-decorator";
+
+@Component
 export default class Main extends Vue {}
 </script>
 
