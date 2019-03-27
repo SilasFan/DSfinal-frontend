@@ -3,6 +3,7 @@
         <img
             src="/icons/menu.svg"
             style="height:24px;width:27px;opacity:0.5;cursor:pointer"
+            v-on:click="$emit('Display')"
         />
         <img
             src="/icons/astronauts.svg"
@@ -23,6 +24,8 @@
 
 <script lang='ts'>
 import { Component, Vue, Provide } from "vue-property-decorator";
+
+@Component({})
 export default class Navbar extends Vue {}
 </script>
 

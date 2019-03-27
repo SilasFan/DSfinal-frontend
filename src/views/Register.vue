@@ -1,6 +1,6 @@
 <template>
     <div class="register">
-        <div class="close"></div>
+        <div class="close" v-on:click="close()"></div>
         <div class="register-astronaut"></div>
         <p>
             scut
@@ -57,6 +57,10 @@ export default class Register extends Vue {
     };
 
     @Provide() RepeatPasswd: string = "";
+
+    close(): void {
+        this.$router.replace("/home");
+    }
 }
 </script>
 

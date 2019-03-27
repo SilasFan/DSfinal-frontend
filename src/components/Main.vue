@@ -14,6 +14,7 @@ export default class Main extends Vue {}
 
 <style scoped>
 .main-page {
+    width: 100%;
     background-color: aqua;
 }
 </style>
