@@ -12,7 +12,7 @@
                 <br />
                 <p>账号</p>
                 <div class="input">
-                    <img src="/icons/user.svg" style="width:16px;" />
+                    <img src="/icons/user.svg" style="width:16px;height:16px;" />
                     <input type="text" placeholder="请输入邮箱" />
                     <span>@mail.scut.edu.cn</span>
                 </div>
@@ -78,7 +78,9 @@ strong {
     margin-top: 3%;
     margin-bottom: 10px;
     background-image: url("/icons/astronauts.svg");
+    background-repeat: no-repeat;
     align-self: center;
+    flex-shrink: 0;
 }
 
 .login-form {
@@ -87,7 +89,7 @@ strong {
     align-items: center;
     flex-direction: column;
 
-    width: 470px;
+    width: 500px;
     align-self: center;
     border-radius: 10px;
     margin-top: 50px;
@@ -114,6 +116,7 @@ strong {
     border-radius: 6px;
     border: black 1px solid;
     box-shadow: rgba(128, 128, 128, 0.918) 0px 3px 5px;
+    
 }
 
 .input {
@@ -134,9 +137,16 @@ strong {
     margin-left: 20px;
     margin-right: 3px;
     padding: 0px;
+    outline: none;
+    height: auto;
 }
 .input span {
     align-self: flex-end;
+}
+.input img{
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
 }
 
 .close {

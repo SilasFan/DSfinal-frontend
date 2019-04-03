@@ -12,7 +12,7 @@
         <span>scut<strong>bbs</strong></span>
         <div class="nav-search">
             <input type="text" placeholder="搜索" />
-            <img src="/icons/home.svg" />
+            <img src="/icons/lookup.svg" style="height:20px;width:30px;" />
         </div>
         <div class="user-status"></div>
         <div class="not-login">
@@ -41,6 +41,12 @@ export default class Navbar extends Vue {}
     font-size: 28px;
     margin-left: 10px;
 }
+.navbar span {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 .nav-search {
     height: 36px;
@@ -58,6 +64,9 @@ export default class Navbar extends Vue {}
     font-size: 20px;
     display: block;
     border-radius: 10px;
+
+    /* 去除chrome的聚焦 */
+    outline: none;
 }
 .nav-search img {
     margin-left: -32px;

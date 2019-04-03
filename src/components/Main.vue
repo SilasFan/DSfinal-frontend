@@ -1,20 +1,28 @@
 <template>
     <div class="main-page">
-        <p>23333333</p>
-        <router-link to="/home">22222</router-link>
+        <Content />
+        <RightBar />
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import Content from "./main/content.vue";
+import RightBar from "./main/rightBar.vue";
 
-@Component
+@Component({
+    components: {
+        Content,
+        RightBar
+    }
+})
 export default class Main extends Vue {}
 </script>
 
 <style scoped>
 .main-page {
+    display: flex;
     width: 100%;
-    background-color: aqua;
+    overflow-x: auto;
 }
 </style>

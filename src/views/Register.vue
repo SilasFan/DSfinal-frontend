@@ -22,7 +22,7 @@
                 <br />
                 <p><strong style="color:red">*</strong>&nbsp;&nbsp;设置密码</p>
                 <div class="input">
-                    <input type="text" placeholder="请输入密码" />
+                    <input type="password" placeholder="请输入密码" />
                 </div>
                 <br />
                 <p><strong style="color:red">*</strong>&nbsp;&nbsp;确认密码</p>
@@ -143,6 +143,7 @@ strong {
     border: none;
     margin-right: 3px;
     padding: 0px;
+    outline: none;
 }
 .input span {
     align-self: flex-end;

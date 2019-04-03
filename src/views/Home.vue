@@ -24,9 +24,9 @@ Vue.use(VueRouter);
     }
 })
 export default class Home extends Vue {
-    @Provide() SidebarDisplay: boolean = false;
+    @Provide() public SidebarDisplay: boolean = false;
 
-    DisplaySidebar(): void {
+    public DisplaySidebar(): void {
         this.SidebarDisplay = !this.SidebarDisplay;
     }
 }
@@ -53,6 +53,7 @@ export default class Home extends Vue {
 @keyframes sidebar-in {
     100% {
         width: 0px;
+        transform: translateX(-200px);
     }
 }
 </style>
