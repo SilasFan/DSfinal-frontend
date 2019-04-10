@@ -11,17 +11,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Provide } from "vue-property-decorator";
-import Navbar from "@/components/Navbar.vue";
-import SideBar from "@/components/SideBar.vue";
-import VueRouter from "vue-router";
+import { Component, Vue, Provide } from 'vue-property-decorator';
+import Navbar from '@/components/Navbar.vue';
+import SideBar from '@/components/SideBar.vue';
+import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 @Component({
     components: {
         Navbar,
-        SideBar
-    }
+        SideBar,
+    },
 })
 export default class Home extends Vue {
     @Provide() public SidebarDisplay: boolean = false;

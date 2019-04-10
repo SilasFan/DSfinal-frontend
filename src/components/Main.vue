@@ -6,15 +6,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import Content from "./main/content.vue";
-import RightBar from "./main/rightBar.vue";
+import { Component, Vue } from 'vue-property-decorator';
+import Content from './main/content.vue';
+import RightBar from './main/rightBar.vue';
 
 @Component({
     components: {
         Content,
-        RightBar
-    }
+        RightBar,
+    },
 })
 export default class Main extends Vue {}
 </script>

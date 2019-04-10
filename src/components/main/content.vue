@@ -9,9 +9,9 @@
     </div>
 </template>
 
-<script  lang="ts">
-import { Component, Vue, Provide } from "vue-property-decorator";
-import News from "./news.vue";
+<script lang="ts">
+import { Component, Vue, Provide } from 'vue-property-decorator';
+import News from './news.vue';
 
 interface New {
     title: string;
@@ -22,17 +22,17 @@ interface New {
 
 @Component({
     components: {
-        News
-    }
+        News,
+    },
 })
 export default class Content extends Vue {
     @Provide() public news: New[] = [
         {
-            title: "test111",
-            post_user: "silas",
+            title: 'test111',
+            post_user: 'silas',
             post_date: new Date(9102, 10, 11, 10, 28),
-            hot: 120
-        }
+            hot: 120,
+        },
     ];
 }
 </script>

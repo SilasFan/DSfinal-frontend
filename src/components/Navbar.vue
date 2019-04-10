@@ -1,18 +1,11 @@
 <template>
     <div class="navbar">
-        <img
-            src="/icons/menu.svg"
-            style="height:24px;width:27px;opacity:0.5;cursor:pointer"
-            v-on:click="$emit('Display')"
-        />
-        <img
-            src="/icons/astronauts.svg"
-            style="height:30px;width:30px;margin-left:30px;"
-        />
+        <img src="/icons/menu.svg" style="height:24px;width:27px;opacity:0.5;cursor:pointer" v-on:click="$emit('Display')" />
+        <img src="/icons/astronauts.svg" style="height:30px;width:30px;margin-left:30px;" />
         <span>scut<strong>bbs</strong></span>
         <div class="nav-search">
-            <input type="text" placeholder="搜索" />
-            <img src="/icons/lookup.svg" style="height:20px;width:30px;" />
+            <input type="text" placeholder="搜索" v-model="SearchText" />
+            <img src="/icons/lookup.svg" style="height:20px;width:30px;" @click="search" />
         </div>
         <div class="user-status"></div>
         <div class="not-login">
@@ -22,11 +15,18 @@
     </div>
 </template>
 
-<script lang='ts'>
-import { Component, Vue, Provide } from "vue-property-decorator";
+<script lang="ts">
+import { Component, Vue, Provide } from 'vue-property-decorator';
+import { State, Getter, Mutation, namespace } from 'vuex-class';
 
 @Component({})
-export default class Navbar extends Vue {}
+export default class Navbar extends Vue {
+    @Provide() public SearchText: string = '';
+
+    private search() {
+        this.$router.push('/home/search');
+    }
+}
 </script>
 
 <style scoped>
@@ -60,7 +60,7 @@ export default class Navbar extends Vue {}
     border: none;
     padding: 0px;
     height: 100%;
-    width: 320px;
+    width: 300px;
     font-size: 20px;
     display: block;
     border-radius: 10px;
@@ -69,7 +69,6 @@ export default class Navbar extends Vue {}
     outline: none;
 }
 .nav-search img {
-    margin-left: -32px;
     height: 30px;
     width: 30px;
     align-self: center;

@@ -2,23 +2,15 @@
     <div class="anew">
         <p>{{ anews.title }}</p>
         <div>
-            <img src="/icons/user.svg" /><span>{{ anews.post_user }}</span>
-            <img src="/icons/hot.svg" /><span>{{ anews.hot }}</span>
-            <img src="/icons/clock.svg" /><span>{{
-                anews.post_date.getMonth() +
-                    "-" +
-                    anews.post_date.getDate() +
-                    " " +
-                    anews.post_date.getHours() +
-                    ":" +
-                    anews.post_date.getMinutes()
+            <img src="/icons/user.svg" /><span>{{ anews.post_user }}</span> <img src="/icons/hot.svg" /><span>{{ anews.hot }}</span> <img src="/icons/clock.svg" /><span>{{
+                anews.post_date.getMonth() + '-' + anews.post_date.getDate() + ' ' + anews.post_date.getHours() + ':' + anews.post_date.getMinutes()
             }}</span>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
 interface New {
     title: string;
