@@ -81,10 +81,30 @@ export default new Router({
                                 links: [
                                     { title: '失物招领', url: '/home/lost-and-found/found' },
                                     { title: '寻物启事', url: '/home/lost-and-found/lost' },
-                                    { title: '发布消息', url: '/home/lost-and-found/new' },
+                                    { title: '发布消息', url: '/home/lost-and-found/newitem' },
                                 ],
                                 title: '失物寻物',
                             },
+                        },
+                        {
+                            path: 'found',
+                            name: 'found',
+                            component: () => import('@/components/lostandfound/ItemList.vue'),
+                            props: { title: '失物招领' },
+                        },
+                        {
+                            path: 'items/:itemId',
+                            component: () => import('@/components/lostandfound/ItemDetails.vue'),
+                        },
+                        {
+                            path: 'lost',
+                            name: 'lost',
+                            component: () => import('@/components/lostandfound/ItemList.vue'),
+                            props: { title: '寻物启事' },
+                        },
+                        {
+                            path: 'newitem',
+                            component: () => import('@/components/lostandfound/NewItem.vue'),
                         },
                     ],
                 },
