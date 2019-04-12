@@ -49,6 +49,24 @@ export default new Router({
                             component: () => import('@/components/universal/PartNav.vue'),
                             props: { links: [{ title: '讲座动态', url: '/home/study/lectures' }, { title: '课程资料', url: '/home/study/materials' }], title: '学习资料' },
                         },
+                        {
+                            path: 'lectures',
+                            component: () => import('@/components/lectures/LectureList.vue'),
+                        },
+                        {
+                            path: 'materials',
+                            component: () => import('@/components/lectures/Materials.vue'),
+                            children: [
+                                {
+                                    path: '/',
+                                    component: () => import('@/components/lectures/MaterialForm.vue'),
+                                },
+                                {
+                                    path: ':postId',
+                                    component: () => import('@/components/universal/Post1.vue'),
+                                },
+                            ],
+                        },
                     ],
                 },
                 {

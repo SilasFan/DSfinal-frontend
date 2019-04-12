@@ -1,8 +1,13 @@
 <template>
-    <div class="postForm">
+    <div class="MaterialForm">
+        <select id="select">
+            <option selected disabled>请选择所查课程的名称</option>
+            <option value="qq">qq</option>
+        </select>
         <table>
             <tr>
                 <th></th>
+                <th><img src="/icons/category.svg" /></th>
                 <th><img src="/icons/user.svg" /></th>
                 <th><img src="/icons/comment.svg" /></th>
                 <th><img src="/icons/hot2.svg" /></th>
@@ -12,6 +17,7 @@
                 <td class="grow">
                     <router-link v-bind:to="'/home/hot/' + post.post_url">{{ post.title }}</router-link>
                 </td>
+                <td class="formCon">{{ post.category }}</td>
                 <td class="formCon">{{ post.author }}</td>
                 <td class="formCon">{{ post.lastComment }}</td>
                 <td class="formCon">{{ post.hot }}</td>
@@ -29,6 +35,7 @@ import { Component, Vue, Provide } from 'vue-property-decorator';
 interface MiniPost {
     title: string;
     post_url: string;
+    category: string;
     author: string;
     lastComment: string;
     hot: number;
@@ -36,11 +43,12 @@ interface MiniPost {
 }
 
 @Component({})
-export default class PostForm extends Vue {
+export default class MaterialForm extends Vue {
     @Provide() public posts: MiniPost[] = [
         {
             title: '如何起一个夸张的标题',
             post_url: '2133',
+            category: 'web程序设计',
             author: 'Tony',
             lastComment: 'Bob',
             hot: 7777,
@@ -58,18 +66,35 @@ export default class PostForm extends Vue {
 </script>
 
 <style scoped>
-.postForm {
+.MaterialForm {
+    width: 100%;
+    height: 100%;
     display: flex;
+    flex-direction: column;
 }
-.postForm img {
+.MaterialForm img {
     height: 20px;
     width: 20px;
 }
-.postForm table {
+.MaterialForm table {
     width: 100%;
     text-align: center;
     margin-right: 50px;
+    margin-bottom: 50px;
     border-collapse: collapse;
+}
+
+#select {
+    width: 20%;
+    align-self: flex-end;
+    margin-top: -48px;
+    margin-bottom: 60px;
+    padding: 5px 0px 5px 10px;
+    border: none;
+    font-size: 18px;
+    outline: none;
+    color: #c9c5c5;
+    box-shadow: #00000031 0px 0px 8px;
 }
 
 .grow {

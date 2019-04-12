@@ -3,8 +3,8 @@
         <div class="reUser">
             <span class="circle"></span>
             <div class="content">
-                <img src="/icons/user.svg" class="icon" />
-                <img src="/icons/user.svg" class="portrait" />
+                <img src="/icons/user.1.svg" class="icon" />
+                <img src="/icons/user.1.svg" class="portrait" />
                 <div class="words">
                     <p>
                         <a href="#" class="name">名字</a>
