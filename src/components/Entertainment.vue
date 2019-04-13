@@ -2,7 +2,7 @@
     <div class="entertainment">
         <h2>休闲娱乐</h2>
         <p>总帖数：{{ postSum }}</p>
-        <PostForm />
+        <router-view />
     </div>
 </template>
 

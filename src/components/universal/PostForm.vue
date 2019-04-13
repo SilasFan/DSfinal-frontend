@@ -10,7 +10,7 @@
             </tr>
             <tr v-for="post in posts" :key="post.post_url" class="fcontent">
                 <td class="grow">
-                    <router-link v-bind:to="'/home/hot/' + post.post_url">{{ post.title }}</router-link>
+                    <router-link v-bind:to="'/home' + Category + post.post_url">{{ post.title }}</router-link>
                 </td>
                 <td class="formCon">{{ post.author }}</td>
                 <td class="formCon">{{ post.lastComment }}</td>
@@ -53,6 +53,10 @@ export default class PostForm extends Vue {
             postTime.getMinutes() < 10 ? '0' + postTime.getMinutes() : postTime.getMinutes()
         }`;
         return time;
+    }
+
+    get Category() {
+        return '/' + this.$attrs.category + '/';
     }
 }
 </script>

@@ -27,6 +27,7 @@ export default new Router({
                         {
                             path: '/',
                             component: () => import('@/components/universal/PostForm.vue'),
+                            props: { category: 'hot' },
                         },
                         {
                             path: ':postId',
@@ -38,6 +39,17 @@ export default new Router({
                     path: 'entertainment',
                     name: 'entertainment',
                     component: () => import('@/components/Entertainment.vue'),
+                    children: [
+                        {
+                            path: '/',
+                            component: () => import('@/components/universal/PostForm.vue'),
+                            props: { category: 'entertainment' },
+                        },
+                        {
+                            path: ':postId',
+                            component: () => import('@/components/universal/Post1.vue'),
+                        },
+                    ],
                 },
                 {
                     path: 'study',
