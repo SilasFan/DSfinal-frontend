@@ -33,8 +33,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Provide, Vue } from "vue-property-decorator";
-import VueRouter from "vue-router";
+import { Component, Provide, Vue } from 'vue-property-decorator';
+import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 interface User {
@@ -44,15 +44,15 @@ interface User {
 
 @Component
 export default class Login extends Vue {
-    //data
-    @Provide() pre_login: User = {
-        id: "",
-        password: ""
+    // data
+    @Provide() public PreLogin: User = {
+        id: '',
+        password: '',
     };
 
-    //methods
-    close(): void {
-        this.$router.replace("/home");
+    // methods
+    private close(): void {
+        this.$router.go(-1);
     }
 }
 </script>
@@ -77,7 +77,7 @@ strong {
     height: 70px;
     margin-top: 3%;
     margin-bottom: 10px;
-    background-image: url("/icons/astronauts.svg");
+    background-image: url('/icons/astronauts.svg');
     background-repeat: no-repeat;
     align-self: center;
     flex-shrink: 0;
@@ -116,7 +116,6 @@ strong {
     border-radius: 6px;
     border: black 1px solid;
     box-shadow: rgba(128, 128, 128, 0.918) 0px 3px 5px;
-    
 }
 
 .input {
@@ -143,14 +142,14 @@ strong {
 .input span {
     align-self: flex-end;
 }
-.input img{
+.input img {
     width: 16px;
     height: 16px;
     margin-top: 2px;
 }
 
 .close {
-    background-image: url("/icons/close.svg");
+    background-image: url('/icons/close.svg');
     background-repeat: no-repeat;
     position: fixed;
     right: 20px;

@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Provide, Vue } from "vue-property-decorator";
+import { Component, Provide, Vue } from 'vue-property-decorator';
 
 interface User {
     id: string;
@@ -49,17 +49,17 @@ interface User {
 
 @Component
 export default class Register extends Vue {
-    //data
-    @Provide() pre_register: User = {
-        id: "",
-        password: "",
-        name: ""
+    // data
+    @Provide() public PreRegister: User = {
+        id: '',
+        password: '',
+        name: '',
     };
 
-    @Provide() RepeatPasswd: string = "";
+    @Provide() public RepeatPasswd: string = '';
 
-    close(): void {
-        this.$router.replace("/home");
+    public close(): void {
+        this.$router.go(-1);
     }
 }
 </script>
@@ -85,7 +85,7 @@ strong {
     height: 70px;
     margin-top: 3%;
     margin-bottom: 10px;
-    background-image: url("/icons/astronauts.svg");
+    background-image: url('/icons/astronauts.svg');
     background-repeat: no-repeat;
     align-self: center;
     flex-shrink: 0;
@@ -150,7 +150,7 @@ strong {
 }
 
 .close {
-    background-image: url("/icons/close.svg");
+    background-image: url('/icons/close.svg');
     background-repeat: no-repeat;
     position: fixed;
     right: 20px;

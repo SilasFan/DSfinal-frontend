@@ -9,10 +9,12 @@
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator';
 import PostForm from './universal/PostForm.vue';
+import Editor from './universal/Editor.vue';
 
 @Component({
     components: {
         PostForm,
+        Editor,
     },
 })
 export default class Hot extends Vue {
