@@ -124,6 +124,29 @@ export default new Router({
                     path: 'search',
                     component: () => import('@/components/Search.vue'),
                 },
+                {
+                    path: 'user',
+                    component: () => import('@/components/User.vue'),
+                },
+                {
+                    path: 'mysetting',
+                    component: () => import('@/components/UserSetting.vue'),
+                    children: [
+                        {
+                            path: '/',
+                            component: () => import('@/components/universal/PartNav.vue'),
+                            props: { links: [{ title: '个人信息', url: '/home/mysetting/info' }, { title: '账号密码', url: '/home/mysetting/pswmodify' }], title: '账号设置' },
+                        },
+                        {
+                            path: 'info',
+                            component: () => import('@/components/usersetting/UserInfo.vue'),
+                        },
+                        {
+                            path: 'pswmodify',
+                            component: () => import('@/components/usersetting/PswAuthentication.vue'),
+                        },
+                    ],
+                },
             ],
         },
         {

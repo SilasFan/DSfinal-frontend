@@ -33,6 +33,19 @@
                         </div>
                     </div>
                 </li>
+                <li>
+                    <div class="userinfo" @click="showUserMenu">
+                        <img src="/icons/user.1.svg" />
+                        <p>username</p>
+                    </div>
+                    <div class="message-content" id="userinfo" v-if="ShowUserMenu">
+                        <div>
+                            <router-link to="/home/user"><img src="/icons/user.svg" />我的主页</router-link>
+                            <router-link to="/home/mysetting"><img src="/icons/setting.svg" />账号设置</router-link>
+                            <a href="#"><img src="/icons/logout.svg" />退出登录</a>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
@@ -50,14 +63,21 @@ export default class Navbar extends Vue {
 
     @Provide() public ShowMessage: boolean = false;
     @Provide() public ShowNotification: boolean = false;
+    @Provide() private ShowUserMenu: boolean = false;
 
     public showMessage() {
         this.ShowMessage = !this.ShowMessage;
         this.ShowNotification = false;
+        this.ShowUserMenu = false;
     }
     public showNotification() {
         this.ShowNotification = !this.ShowNotification;
         this.ShowMessage = false;
+        this.ShowUserMenu = false;
+    }
+    public showUserMenu() {
+        this.ShowUserMenu = !this.ShowUserMenu;
+        this.ShowMessage = this.ShowNotification = false;
     }
 
     private search() {
@@ -137,6 +157,7 @@ export default class Navbar extends Vue {
     height: 20px;
     cursor: pointer;
     margin-right: 10px;
+    margin-top: 13.5px;
 }
 .loggedin ul {
     display: flex;
@@ -155,6 +176,7 @@ export default class Navbar extends Vue {
     margin-top: 10px;
     border-radius: 6px;
     box-shadow: #00000031 0px 3px 6px;
+    font-size: 16px;
 }
 .message-content::before {
     content: '';
@@ -214,5 +236,48 @@ export default class Navbar extends Vue {
     font-size: 16px;
     font-weight: normal;
     color: #c9c5c5;
+}
+
+.userinfo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.userinfo img {
+    width: 40px;
+    height: 40px;
+    margin-left: 5px;
+    border-radius: 50%;
+    margin-top: 4px;
+}
+.userinfo p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 2px;
+    font-size: 20px;
+}
+
+#userinfo {
+    width: 140px;
+    margin-left: -55px;
+    margin-top: 15px;
+}
+#userinfo div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+#userinfo a {
+    margin-top: 20px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #878787 !important;
+    background-color: white !important;
+}
+#userinfo a img {
+    margin: 0px;
+    margin-right: 5px;
 }
 </style>

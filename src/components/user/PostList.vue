@@ -9,7 +9,6 @@
                     <a href="#" class="title">中文</a>
                     <em>|&nbsp;&nbsp;&nbsp;&nbsp;英文</em>
                 </p>
-                <a href="#" class="user">doooris</a>
             </div>
         </div>
     </div>
@@ -19,13 +18,12 @@
 import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
 
 @Component({})
-export default class Result extends Vue {}
+export default class PostList extends Vue {}
 </script>
 
 <style scoped>
 .result {
     width: 100%;
-    height: 90%;
     display: flex;
     flex-direction: column;
     margin-right: 40px;
@@ -56,7 +54,7 @@ export default class Result extends Vue {}
 }
 
 .content {
-    height: 129px;
+    height: 80px;
     background-color: #fafafa;
     flex-grow: 2;
     display: flex;

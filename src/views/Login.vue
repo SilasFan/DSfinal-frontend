@@ -2,10 +2,7 @@
     <div class="login">
         <div class="close" v-on:click="close()"></div>
         <div class="login-astronaut"></div>
-        <p>
-            scut
-            <strong>bbs</strong>
-        </p>
+        <p>scut<strong>bbs</strong></p>
         <div class="login-form">
             <div class="login-form-input">
                 <br />
