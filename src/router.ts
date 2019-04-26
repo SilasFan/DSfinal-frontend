@@ -37,7 +37,6 @@ export default new Router({
                 },
                 {
                     path: 'entertainment',
-                    name: 'entertainment',
                     component: () => import('@/components/Entertainment.vue'),
                     children: [
                         {
@@ -146,6 +145,10 @@ export default new Router({
                             component: () => import('@/components/usersetting/PswAuthentication.vue'),
                         },
                     ],
+                },
+                {
+                    path: 'letters',
+                    component: () => import('@/components/Letter.vue'),
                 },
             ],
         },

@@ -18,7 +18,7 @@
                     <img src="/icons/message.svg" id="message" @click="showMessage" />
                     <div class="message-content" v-if="ShowMessage">
                         <div class="content-box">
-                            <a href="#"><p>23333</p></a>
+                            <router-link to="/home/letters"><p>23333</p></router-link>
                             <a href="#"><p>23333</p></a>
                         </div>
                     </div>
@@ -201,6 +201,7 @@ export default class Navbar extends Vue {
 .content-box a {
     width: 200px;
     text-decoration: none;
+    background-color: white !important;
 }
 .content-box p {
     text-align: left;
