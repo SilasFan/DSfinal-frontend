@@ -33,6 +33,7 @@ export default class Storey extends Vue {}
     display: flex;
     flex-direction: column;
     padding-bottom: 10px;
+    margin-bottom: 30px;
     border-bottom: #dfdfdf 2px solid;
 }
 

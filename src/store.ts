@@ -8,6 +8,11 @@ export default new Vuex.Store({
         CurrentUser: '',
         token: '',
     },
+    getters: {
+        isLogin: (state) => {
+            return state.CurrentUser !== '';
+        },
+    },
     mutations: {},
     actions: {},
 });

@@ -27,10 +27,11 @@ export default class Entertainment extends Vue {
     width: 100%;
     height: 100%;
     margin-left: 6%;
-    margin-top: 40px;
     text-align: left;
+    overflow-y: auto;
 }
 .entertainment h2 {
+    margin-top: 40px;
     padding: 5px 0px 5px 20px;
     border-left: #9a9a9a 2px solid;
     text-align: left;

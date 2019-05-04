@@ -1,8 +1,7 @@
 <template>
     <div>
         <p>
-            没有找到与 <strong>{{ Keyword }}</strong>
-            相关的用户
+            没有找到与 <strong>{{ Keyword }}</strong> 相关的{{ PostOrUser }}
         </p>
     </div>
 </template>
@@ -13,16 +12,25 @@ import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
 @Component({})
 export default class None extends Vue {
     @Prop() public keyword!: string;
+    @Prop() public postoruser!: boolean;
 
     get Keyword() {
         return this.keyword;
+    }
+
+    get PostOrUser() {
+        if (this.postoruser) {
+            return '帖子';
+        } else {
+            return '用户';
+        }
     }
 }
 </script>
 
 <style scoped>
 div {
-    width: 100%;
+    width: calc(100% - 60px);
 }
 
 p {

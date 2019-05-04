@@ -8,7 +8,8 @@
                     <button v-bind:class="{ active: !PostOrUser }" @click="PostOrUser = false">用户</button>
                 </div>
                 <div class="search-components">
-                    <keep-alive>
+                    <None :keyword="keyWord" v-if="isEmpty" :postoruser="PostOrUser" />
+                    <keep-alive v-if="!isEmpty">
                         <component v-bind:is="whichPost"></component>
                     </keep-alive>
                 </div>
@@ -31,9 +32,8 @@ import ResultUser from '@/components/search/Result-user.vue';
     },
 })
 export default class Search extends Vue {
-    @Provide() public keyWord: string = 'bbb';
-
     @Provide() public PostOrUser: boolean = true;
+    @Provide() public isEmpty: boolean = false;
 
     get whichPost() {
         if (this.PostOrUser) {
@@ -41,6 +41,10 @@ export default class Search extends Vue {
         } else {
             return 'ResultUser';
         }
+    }
+
+    get keyWord() {
+        return this.$route.query.keyWord;
     }
 }
 </script>

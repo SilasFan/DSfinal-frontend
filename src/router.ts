@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
+import Vuex from 'vuex';
+import store from '@/store.ts';
+Vue.use(Vuex);
 Vue.use(Router);
 
 export default new Router({
@@ -121,6 +124,7 @@ export default new Router({
                 },
                 {
                     path: 'search',
+                    name: 'search',
                     component: () => import('@/components/Search.vue'),
                 },
                 {

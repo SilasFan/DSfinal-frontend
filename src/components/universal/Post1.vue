@@ -2,6 +2,8 @@
     <div class="post">
         <h3>这是标题</h3>
         <Storey />
+        <Storey />
+        <Storey />
     </div>
 </template>
 
@@ -26,6 +28,7 @@ export default class Post1 extends Vue {
     width: 90%;
     display: flex;
     flex-direction: column;
+    margin-bottom: 50px;
 }
 
 h3 {
