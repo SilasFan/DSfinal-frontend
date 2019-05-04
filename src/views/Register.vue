@@ -11,27 +11,27 @@
                 <br />
                 <p><strong style="color:red">*</strong>&nbsp;&nbsp;注册账号</p>
                 <div class="input">
-                    <input type="text" placeholder="请输入邮箱" />
+                    <input type="text" placeholder="请输入邮箱" v-model="primitiveUsername" />
                     <span>@mail.scut.edu.cn</span>
                 </div>
                 <br />
                 <p><strong style="color:red">*</strong>&nbsp;&nbsp;用户名</p>
                 <div class="input">
-                    <input type="text" placeholder="请输入用户名" />
+                    <input type="text" placeholder="请输入用户名" v-model="PreRegister.nickname" />
                 </div>
                 <br />
                 <p><strong style="color:red">*</strong>&nbsp;&nbsp;设置密码</p>
                 <div class="input">
-                    <input type="password" placeholder="请输入密码" />
+                    <input type="password" placeholder="请输入密码" v-model="PreRegister.password" />
                 </div>
                 <br />
                 <p><strong style="color:red">*</strong>&nbsp;&nbsp;确认密码</p>
                 <div class="input">
-                    <input type="password" placeholder="请再次输入密码" />
+                    <input type="password" placeholder="请再次输入密码" v-model="RepeatPasswd" />
                 </div>
                 <br />
                 <br />
-                <button>登录</button>
+                <button @click="signup">注册</button>
                 <br />
             </div>
         </div>
@@ -40,26 +40,38 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
+import SingUpFunc from '@/scripts/register/Register';
 
-interface User {
-    id: string;
+interface SignUPInput {
+    username: string;
     password: string;
-    name: string;
+    nickname: string;
 }
 
-@Component
+@Component({})
 export default class Register extends Vue {
     // data
-    @Provide() public PreRegister: User = {
-        id: '',
+    @Provide() public PreRegister: SignUPInput = {
+        username: '',
         password: '',
-        name: '',
+        nickname: '',
     };
 
     @Provide() public RepeatPasswd: string = '';
+    @Provide() public primitiveUsername: string = '';
 
     public close(): void {
         this.$router.go(-1);
+    }
+
+    private signup(): void {
+        this.PreRegister.username = this.primitiveUsername + '@mail.scut.edu.cn';
+        if (this.PreRegister.password !== this.RepeatPasswd) {
+            alert('两次输入密码不一致!');
+        }
+        SingUpFunc(this.PreRegister).then(res => {
+            console.log(res);
+        });
     }
 }
 </script>
@@ -124,6 +136,7 @@ strong {
     border-radius: 6px;
     border: black 1px solid;
     box-shadow: rgba(128, 128, 128, 0.918) 0px 3px 5px;
+    cursor: pointer;
 }
 
 .input {

@@ -8,11 +8,11 @@
             <img src="/icons/lookup.svg" style="height:20px;width:30px;" @click="search" />
         </div>
         <div class="user-status"></div>
-        <div class="not-login">
+        <div class="not-login" v-if="!isLogin">
             <router-link to="/login">登录</router-link>
             <router-link to="/register">注册</router-link>
         </div>
-        <div id="logged"><Loggedin /></div>
+        <div id="logged" v-if="isLogin"><Loggedin /></div>
     </div>
 </template>
 
@@ -28,12 +28,11 @@ import Loggedin from '@/components/universal/Loggedin.vue';
 })
 export default class Navbar extends Vue {
     @Provide() public SearchText: string = '';
+    @Getter public isLogin: any;
 
     public search() {
         this.$router.replace({ name: 'search', query: { keyWord: this.SearchText } });
     }
-
-    @Getter public isLogin: any;
 }
 </script>
 
@@ -91,7 +90,7 @@ export default class Navbar extends Vue {
     display: flex;
     font-size: 18px;
     margin-left: auto;
-    display: none;
+    margin-right: 30px;
 }
 .not-login a {
     color: #2c3e50;

@@ -10,19 +10,19 @@
                 <p>账号</p>
                 <div class="input">
                     <img src="/icons/user.svg" style="width:16px;height:16px;" />
-                    <input type="text" placeholder="请输入邮箱" />
+                    <input type="text" placeholder="请输入邮箱" v-model="primitiveUsername" />
                     <span>@mail.scut.edu.cn</span>
                 </div>
                 <br />
                 <p>密码</p>
                 <div class="input">
                     <img src="/icons/password.svg" style="width:16px" />
-                    <input type="password" placeholder="请输入密码" />
+                    <input type="password" placeholder="请输入密码" v-model="PreLogin.password" />
                 </div>
                 <br />
                 <br />
                 <br />
-                <button>登录</button>
+                <button @click="login">登录</button>
                 <br />
             </div>
         </div>
@@ -31,25 +31,46 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
+import { State, Getter, Mutation, namespace } from 'vuex-class';
 import VueRouter from 'vue-router';
+import LoginFunc from '@/scripts/login/Login';
+import LogoutFunc from '@/scripts/login/Logout';
 Vue.use(VueRouter);
 
-interface User {
-    id: string;
+interface LoginInput {
+    username: string;
     password: string;
 }
 
 @Component
 export default class Login extends Vue {
     // data
-    @Provide() public PreLogin: User = {
-        id: '',
+    @Provide() public PreLogin: LoginInput = {
+        username: '',
         password: '',
     };
+    @Provide() public primitiveUsername: string = '';
+
+    @Mutation public setToken: any;
+    @Mutation public setCurrentUser: any;
 
     // methods
     private close(): void {
         this.$router.go(-1);
+    }
+
+    private login(): void {
+        this.PreLogin.username = this.primitiveUsername + '@mail.scut.edu.cn';
+        LoginFunc(this.PreLogin).then(res => {
+            if (res.msg) {
+                alert(res.msg);
+            }
+            if (res.token) {
+                this.setToken({ newtoken: res.token });
+                this.setCurrentUser({ username: this.PreLogin.username });
+                this.$router.go(-1);
+            }
+        });
     }
 }
 </script>
@@ -113,6 +134,7 @@ strong {
     border-radius: 6px;
     border: black 1px solid;
     box-shadow: rgba(128, 128, 128, 0.918) 0px 3px 5px;
+    cursor: pointer;
 }
 
 .input {

@@ -23,13 +23,13 @@
             <li>
                 <div class="userinfo" @click="showUserMenu">
                     <img src="/icons/user.1.svg" />
-                    <p>username</p>
+                    <p>userName</p>
                 </div>
                 <div class="message-content" id="userinfo" v-if="ShowUserMenu">
                     <div>
                         <router-link to="/home/user"><img src="/icons/user.svg" />我的主页</router-link>
                         <router-link to="/home/mysetting"><img src="/icons/setting.svg" />账号设置</router-link>
-                        <a href="#"><img src="/icons/logout.svg" />退出登录</a>
+                        <a href="#" @click="LogOut"><img src="/icons/logout.svg" />退出登录</a>
                     </div>
                 </div>
             </li>
@@ -40,14 +40,18 @@
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator';
 import { State, Getter, Mutation, namespace } from 'vuex-class';
+import LogoutFunc from '@/scripts/login/Logout';
 
 @Component({})
 export default class Loggedin extends Vue {
     @State public CurrentUser!: string;
+    @Mutation public logout: any;
 
     @Provide() public ShowMessage: boolean = false;
     @Provide() public ShowNotification: boolean = false;
     @Provide() private ShowUserMenu: boolean = false;
+
+    @State private token!: string;
 
     public showMessage() {
         this.ShowMessage = !this.ShowMessage;
@@ -62,6 +66,16 @@ export default class Loggedin extends Vue {
     public showUserMenu() {
         this.ShowUserMenu = !this.ShowUserMenu;
         this.ShowMessage = this.ShowNotification = false;
+    }
+
+    public LogOut() {
+        LogoutFunc(this.token).then(res => {
+            if (res.msg) {
+                alert(res.msg);
+            } else if (res.ok) {
+                this.logout();
+            }
+        });
     }
 }
 </script>
