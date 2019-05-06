@@ -7,6 +7,7 @@ export default new Vuex.Store({
     state: {
         CurrentUser: '',
         token: '',
+        NickName: '',
     },
     getters: {
         isLogin: state => {
@@ -22,6 +23,10 @@ export default new Vuex.Store({
         setCurrentUser(state, payload) {
             state.CurrentUser = payload.username;
             localStorage.setItem('currentuser', state.CurrentUser);
+        },
+        setNickName(state, payload) {
+            state.NickName = payload.nickname;
+            localStorage.setItem('nickname', payload.nickname);
         },
         logout(state) {
             state.token = '';

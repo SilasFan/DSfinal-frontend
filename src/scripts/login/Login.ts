@@ -19,10 +19,37 @@ const LOGIN: string = `
   }
 `;
 
-export default (loginInput: LoginInput) =>
-    sendGQL({
+const CURRENT_USER = `
+  query CurrentUser {
+    currentUser {
+      ... on PersonalInfo {
+        username
+        pictureURL
+      }
+      ... on Error {
+        msg
+        errCode
+      }
+    }
+  }
+`;
+
+function LoginFunc(loginInput: LoginInput) {
+    return sendGQL({
         query: LOGIN,
         variables: {
             loginInput,
         },
     });
+}
+
+function getInfo(auth: string) {
+    return sendGQL({
+        query: CURRENT_USER,
+        variables: {
+            auth,
+        },
+    });
+}
+
+export { getInfo, LoginFunc };

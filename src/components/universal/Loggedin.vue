@@ -38,18 +38,21 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Provide } from 'vue-property-decorator';
+import { Component, Vue, Provide, Watch } from 'vue-property-decorator';
 import { State, Getter, Mutation, namespace } from 'vuex-class';
 import LogoutFunc from '@/scripts/login/Logout';
+import { getInfo } from '@/scripts/login/Login';
 
 @Component({})
 export default class Loggedin extends Vue {
     @State public CurrentUser!: string;
     @Mutation public logout: any;
+    @Mutation public setNickName: any;
 
     @Provide() public ShowMessage: boolean = false;
     @Provide() public ShowNotification: boolean = false;
     @Provide() private ShowUserMenu: boolean = false;
+    @Provide() private headUrl: string = '';
 
     @State private token!: string;
 
@@ -76,6 +79,26 @@ export default class Loggedin extends Vue {
                 this.logout();
             }
         });
+    }
+
+    // 获取nickname和imageurl
+    // TODO:这里没有处理imgurl，等api弄好了再写
+    public getNickname() {
+        console.log(this.token);
+        getInfo(this.token).then(res => {
+            if (res.msg) {
+                console.log(res.msg);
+            } else {
+                console.log(res);
+                this.setNickName(res.username);
+            }
+        });
+    }
+
+    // TODO:不知道为什么老是登录过期，待修复
+    @Watch('CurrentUser', { immediate: true, deep: true })
+    public onChange() {
+        setTimeout(this.getNickname, 1000);
     }
 }
 </script>

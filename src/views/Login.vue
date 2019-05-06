@@ -33,7 +33,7 @@
 import { Component, Provide, Vue } from 'vue-property-decorator';
 import { State, Getter, Mutation, namespace } from 'vuex-class';
 import VueRouter from 'vue-router';
-import LoginFunc from '@/scripts/login/Login';
+import { LoginFunc } from '@/scripts/login/Login';
 import LogoutFunc from '@/scripts/login/Logout';
 Vue.use(VueRouter);
 

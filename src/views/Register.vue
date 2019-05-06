@@ -70,7 +70,12 @@ export default class Register extends Vue {
             alert('两次输入密码不一致!');
         }
         SingUpFunc(this.PreRegister).then(res => {
-            console.log(res);
+            if (res.token) {
+                alert('注册成功!');
+                this.$router.go(-1);
+            } else if (res.msg) {
+                alert(res.msg);
+            }
         });
     }
 }
