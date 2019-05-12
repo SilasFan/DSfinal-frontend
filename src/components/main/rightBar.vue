@@ -8,10 +8,29 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Provide } from 'vue-property-decorator';
+import getHotestFunc from '@/scripts/main/Hotest';
 
 @Component({})
-export default class RightBar extends Vue {}
+export default class RightBar extends Vue {
+    @Provide() public hotest!: any;
+
+    public beforeMount() {
+        this.getHotest();
+    }
+
+    // TODO:等待数据补完
+    private getHotest() {
+        const This = this;
+        getHotestFunc().then(res => {
+            if (res.msg) {
+                console.log(res.msg);
+            } else {
+                This.hotest = res.hots;
+            }
+        });
+    }
+}
 </script>
 
 <style scoped>

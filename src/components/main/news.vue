@@ -12,7 +12,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop, Provide } from 'vue-property-decorator';
+import { getLatestFunc } from '@/scripts/main/Latest';
 
 interface New {
     title: string;
@@ -24,6 +25,24 @@ interface New {
 @Component({})
 export default class News extends Vue {
     @Prop() public anews!: New;
+    @Provide() public News!: any;
+
+    // TODO:数据还没有补上
+    public getLatest() {
+        const This = this;
+        getLatestFunc().then(res => {
+            if (res.msg) {
+                console.log(res.msg);
+            } else {
+                this.News = res.latest;
+                console.log(res);
+            }
+        });
+    }
+
+    public beforeMount() {
+        this.getLatest();
+    }
 }
 
 const da: Date = new Date();

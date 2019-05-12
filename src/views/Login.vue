@@ -42,7 +42,7 @@ interface LoginInput {
     password: string;
 }
 
-@Component
+@Component({})
 export default class Login extends Vue {
     // data
     @Provide() public PreLogin: LoginInput = {

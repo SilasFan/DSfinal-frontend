@@ -13,6 +13,7 @@
         "no-consecutive-blank-lines": false,
         "max-line-length": false,
         "arrow-parens": false,
-        "no-console": false
+        "no-console": false,
+        "eofline": false
     }
 }

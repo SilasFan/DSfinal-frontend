@@ -7,9 +7,27 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { State, Getter, Mutation, namespace } from 'vuex-class';
 
 @Component({})
-export default class App extends Vue {}
+export default class App extends Vue {
+    @Mutation public setToken: any;
+    @Mutation public setCurrentUser: any;
+    @Mutation public setNickName: any;
+
+    // 读取本地缓存的token
+    private beforeMount() {
+        if (localStorage.getItem('token')) {
+            this.setToken(localStorage.getItem('token'));
+        }
+        if (localStorage.getItem('currentuser')) {
+            this.setCurrentUser(localStorage.getItem('currentuser'));
+        }
+        if (localStorage.getItem('nickname')) {
+            this.setNickName(localStorage.getItem('nickname'));
+        }
+    }
+}
 </script>
 
 <style>

@@ -23,7 +23,7 @@
             <li>
                 <div class="userinfo" @click="showUserMenu">
                     <img src="/icons/user.1.svg" />
-                    <p>userName</p>
+                    <p>{{ NickName }}</p>
                 </div>
                 <div class="message-content" id="userinfo" v-if="ShowUserMenu">
                     <div>
@@ -46,6 +46,7 @@ import { getInfo } from '@/scripts/login/Login';
 @Component({})
 export default class Loggedin extends Vue {
     @State public CurrentUser!: string;
+    @State public NickName!: string;
     @Mutation public logout: any;
     @Mutation public setNickName: any;
 
@@ -84,21 +85,18 @@ export default class Loggedin extends Vue {
     // 获取nickname和imageurl
     // TODO:这里没有处理imgurl，等api弄好了再写
     public getNickname() {
-        console.log(this.token);
         getInfo(this.token).then(res => {
             if (res.msg) {
                 console.log(res.msg);
             } else {
-                console.log(res);
                 this.setNickName(res.username);
             }
         });
     }
 
-    // TODO:不知道为什么老是登录过期，待修复
-    @Watch('CurrentUser', { immediate: true, deep: true })
+    @Watch('CurrentUser', { immediate: true })
     public onChange() {
-        setTimeout(this.getNickname, 1000);
+        setTimeout(this.getNickname, 100);
     }
 }
 </script>

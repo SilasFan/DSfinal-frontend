@@ -1,7 +1,6 @@
 <template>
     <div class="hot">
         <h2>校园热点</h2>
-        <p>总帖数：{{ postSum }}</p>
         <router-view />
     </div>
 </template>
@@ -17,9 +16,7 @@ import Editor from './universal/Editor.vue';
         Editor,
     },
 })
-export default class Hot extends Vue {
-    @Provide() public postSum: number = 2333;
-}
+export default class Hot extends Vue {}
 </script>
 
 <style scoped>

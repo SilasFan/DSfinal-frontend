@@ -23,6 +23,7 @@ import { Component, Vue, Provide } from 'vue-property-decorator';
 import None from '@/components/search/None.vue';
 import ResultPost from '@/components/search/Result-post.vue';
 import ResultUser from '@/components/search/Result-user.vue';
+import SearchFunc from '@/scripts/search/Search';
 
 @Component({
     components: {
@@ -34,6 +35,7 @@ import ResultUser from '@/components/search/Result-user.vue';
 export default class Search extends Vue {
     @Provide() public PostOrUser: boolean = true;
     @Provide() public isEmpty: boolean = false;
+    @Provide() public Result!: any;
 
     get whichPost() {
         if (this.PostOrUser) {
@@ -45,6 +47,21 @@ export default class Search extends Vue {
 
     get keyWord() {
         return this.$route.query.keyWord;
+    }
+
+    public mounted() {
+        // 实际上搜索没有写
+        // this.search();
+    }
+
+    private search() {
+        SearchFunc(this.keyWord as string).then(res => {
+            if (res.msg) {
+                alert('网络故障!');
+            } else {
+                console.log(res);
+            }
+        });
     }
 }
 </script>

@@ -25,8 +25,8 @@ export default new Vuex.Store({
             localStorage.setItem('currentuser', state.CurrentUser);
         },
         setNickName(state, payload) {
-            state.NickName = payload.nickname;
-            localStorage.setItem('nickname', payload.nickname);
+            state.NickName = payload;
+            localStorage.setItem('nickname', payload);
         },
         logout(state) {
             state.token = '';

@@ -1,7 +1,6 @@
 <template>
     <div class="entertainment">
         <h2>休闲娱乐</h2>
-        <p>总帖数：{{ postSum }}</p>
         <router-view />
     </div>
 </template>
@@ -15,9 +14,7 @@ import PostForm from './universal/PostForm.vue';
         PostForm,
     },
 })
-export default class Entertainment extends Vue {
-    @Provide() public postSum: number = 2333;
-}
+export default class Entertainment extends Vue {}
 </script>
 
 <style scoped>

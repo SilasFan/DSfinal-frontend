@@ -46,9 +46,7 @@ function LoginFunc(loginInput: LoginInput) {
 function getInfo(auth: string) {
     return sendGQL({
         query: CURRENT_USER,
-        variables: {
-            auth,
-        },
+        auth,
     });
 }
 
