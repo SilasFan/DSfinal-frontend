@@ -102,7 +102,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Provide } from "vue-property-decorator";
+import { Component, Vue, Provide } from 'vue-property-decorator';
 
 export default class SideBar extends Vue {}
 </script>

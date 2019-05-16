@@ -10,7 +10,7 @@
         <br />
         <br />
         <div class="input">
-            <img src="/icons/password.svg" style="width:16px" />
+            <img src="icons/password.svg" style="width:16px" />
             <input type="password" placeholder="请输入原密码" />
         </div>
         <br />

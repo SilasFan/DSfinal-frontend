@@ -3,12 +3,12 @@
         <h2>请输入新密码</h2>
         <p>新密码</p>
         <div class="input">
-            <img src="/icons/password.svg" style="width:16px" />
+            <img src="icons/password.svg" style="width:16px" />
             <input type="password" placeholder="请输入新密码" />
         </div>
         <p>确认新密码</p>
         <div class="input">
-            <img src="/icons/password.svg" style="width:16px" />
+            <img src="icons/password.svg" style="width:16px" />
             <input type="password" placeholder="请确认新密码" />
         </div>
         <button>提交</button>

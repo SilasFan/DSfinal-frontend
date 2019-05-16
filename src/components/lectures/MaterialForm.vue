@@ -7,11 +7,11 @@
         <table>
             <tr>
                 <th></th>
-                <th><img src="/icons/category.svg" /></th>
-                <th><img src="/icons/user.svg" /></th>
-                <th><img src="/icons/comment.svg" /></th>
-                <th><img src="/icons/hot2.svg" /></th>
-                <th><img src="/icons/clock.svg" /></th>
+                <th><img src="icons/category.svg" /></th>
+                <th><img src="icons/user.svg" /></th>
+                <th><img src="icons/comment.svg" /></th>
+                <th><img src="icons/hot2.svg" /></th>
+                <th><img src="icons/clock.svg" /></th>
             </tr>
             <tr v-for="post in posts" :key="post.post_url" class="fcontent">
                 <td class="grow">

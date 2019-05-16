@@ -5,7 +5,7 @@
             <div class="info1">
                 <span>
                     <p>头像</p>
-                    <img src="/icons/user.svg" />
+                    <img src="icons/user.svg" />
                 </span>
                 <span>
                     <p>用户名</p>

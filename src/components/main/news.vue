@@ -4,7 +4,7 @@
             <router-link to="#">{{ anews.title }}</router-link>
         </p>
         <div>
-            <img src="/icons/user.svg" /><span>{{ anews.post_user }}</span> <img src="/icons/hot.svg" /><span>{{ anews.hot }}</span> <img src="/icons/clock.svg" /><span>{{
+            <img src="icons/user.svg" /><span>{{ anews.post_user }}</span> <img src="icons/hot.svg" /><span>{{ anews.hot }}</span> <img src="icons/clock.svg" /><span>{{
                 anews.post_date.getMonth() + '-' + anews.post_date.getDate() + ' ' + anews.post_date.getHours() + ':' + anews.post_date.getMinutes()
             }}</span>
         </div>

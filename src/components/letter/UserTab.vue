@@ -1,6 +1,6 @@
 <template>
     <div class="user-tab" :class="classObj" @click="setact">
-        <img src="/icons/user.svg" />
+        <img src="icons/user.svg" />
         <p>{{ user.name }}</p>
     </div>
 </template>

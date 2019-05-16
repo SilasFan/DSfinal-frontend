@@ -20,7 +20,7 @@
                     <button>浏览</button>
                 </div>
                 <div class="imageview">
-                    <img src="/icons/user.svg" />
+                    <img src="icons/user.svg" />
                 </div>
             </div>
             <p id="blank">&nbsp;</p>

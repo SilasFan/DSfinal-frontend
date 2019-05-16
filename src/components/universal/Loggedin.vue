@@ -2,7 +2,7 @@
     <div class="loggedin">
         <ul>
             <li>
-                <img src="/icons/message.svg" id="message" @click="showMessage" />
+                <img src="icons/message.svg" id="message" @click="showMessage" />
                 <div class="message-content" v-if="ShowMessage">
                     <div class="content-box">
                         <router-link to="/home/letters"><p>23333</p></router-link>
@@ -11,7 +11,7 @@
                 </div>
             </li>
             <li>
-                <img src="/icons/notification.svg" id="notification" @click="showNotification" />
+                <img src="icons/notification.svg" id="notification" @click="showNotification" />
                 <div class="message-content" v-if="ShowNotification">
                     <div class="content-box">
                         <a href="#">
@@ -22,14 +22,14 @@
             </li>
             <li>
                 <div class="userinfo" @click="showUserMenu">
-                    <img src="/icons/user.1.svg" />
+                    <img src="icons/user.1.svg" />
                     <p>{{ NickName }}</p>
                 </div>
                 <div class="message-content" id="userinfo" v-if="ShowUserMenu">
                     <div>
-                        <router-link to="/home/user"><img src="/icons/user.svg" />我的主页</router-link>
-                        <router-link to="/home/mysetting"><img src="/icons/setting.svg" />账号设置</router-link>
-                        <a href="#" @click="LogOut"><img src="/icons/logout.svg" />退出登录</a>
+                        <router-link to="/home/user"><img src="icons/user.svg" />我的主页</router-link>
+                        <router-link to="/home/mysetting"><img src="icons/setting.svg" />账号设置</router-link>
+                        <a href="#" @click="LogOut"><img src="icons/logout.svg" />退出登录</a>
                     </div>
                 </div>
             </li>

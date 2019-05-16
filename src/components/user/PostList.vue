@@ -5,7 +5,7 @@
             <p class="date">2019-3-23</p>
             <div class="content">
                 <p>
-                    <img src="/icons/write.svg" class="icon" />
+                    <img src="icons/write.svg" class="icon" />
                     <a href="#" class="title">中文</a>
                     <em>|&nbsp;&nbsp;&nbsp;&nbsp;英文</em>
                 </p>

@@ -2,7 +2,7 @@
     <div class="user-view">
         <h2>我的主页</h2>
         <div class="user-headline">
-            <img src="/icons/user.svg" />
+            <img src="icons/user.svg" />
             <p>username</p>
             <p style="margin-top:0px;font-size:18px;">sign</p>
         </div>

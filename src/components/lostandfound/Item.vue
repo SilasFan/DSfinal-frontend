@@ -2,8 +2,8 @@
     <div class="item">
         <img v-bind:src="ImageFullUrl" class="images" />
         <router-link to="/home/lost-and-found/items/2133">title</router-link>
-        <p><img src="/icons/location.svg" class="icon" />position</p>
-        <p><img src="/icons/information.svg" class="icon" />owner</p>
+        <p><img src="icons/location.svg" class="icon" />position</p>
+        <p><img src="icons/information.svg" class="icon" />owner</p>
     </div>
 </template>
 
@@ -15,7 +15,7 @@ export default class Item extends Vue {
     @Prop() private imgurl!: string;
 
     get ImageFullUrl() {
-        return '/icons/' + this.imgurl + '.svg';
+        return 'icons/' + this.imgurl + '.svg';
     }
 }
 </script>

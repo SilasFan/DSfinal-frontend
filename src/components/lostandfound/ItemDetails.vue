@@ -3,12 +3,12 @@
         <h2>物品详情</h2>
         <div class="content">
             <div class="image">
-                <img src="/icons/user.svg" />
+                <img src="icons/user.svg" />
             </div>
             <div class="words">
                 <h3>title</h3>
-                <p><img src="/icons/location.svg" />location</p>
-                <p><img src="/icons/information.svg" />user</p>
+                <p><img src="icons/location.svg" />location</p>
+                <p><img src="icons/information.svg" />user</p>
                 <p>是一张从广州开往新疆的蓝色磁质火车票，时间是2019年4月20日</p>
             </div>
         </div>

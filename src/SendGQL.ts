@@ -12,14 +12,14 @@ export default function(queryPayloadObject: any) {
             "Authorization": 'Bearer ' + queryPayloadObject.auth || 'not-set',
         },
     })
-        .then((response) => {
+        .then(response => {
             if (response.ok) {
                 return response.json();
             } else {
                 throw new Error('--Network Error--');
             }
         })
-        .then((json) => {
+        .then(json => {
             // dig into two layer
             // tslint:disable-next-line:forin
             for (const data in json) {

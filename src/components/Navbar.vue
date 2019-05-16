@@ -1,11 +1,11 @@
 <template>
     <div class="navbar">
-        <img src="/icons/menu.svg" style="height:24px;width:27px;opacity:0.5;cursor:pointer" v-on:click="$emit('Display')" />
-        <img src="/icons/astronauts.svg" style="height:30px;width:30px;margin-left:30px;" />
+        <img src="icons/menu.svg" style="height:24px;width:27px;opacity:0.5;cursor:pointer" v-on:click="$emit('Display')" />
+        <img src="icons/astronauts.svg" style="height:30px;width:30px;margin-left:30px;" />
         <span>scut<strong>bbs</strong></span>
         <div class="nav-search">
             <input type="text" placeholder="搜索" v-model="SearchText" />
-            <img src="/icons/lookup.svg" style="height:20px;width:30px;" @click="search" />
+            <img src="icons/lookup.svg" style="height:20px;width:30px;" @click="search" />
         </div>
         <div class="user-status"></div>
         <div class="not-login" v-if="!isLogin">

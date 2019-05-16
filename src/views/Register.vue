@@ -1,7 +1,11 @@
 <template>
     <div class="register">
-        <div class="close" v-on:click="close()"></div>
-        <div class="register-astronaut"></div>
+        <div class="close" v-on:click="close()">
+            <img src="icons/close.svg" />
+        </div>
+        <div class="register-astronaut">
+            <img src="icons/astronauts.svg" />
+        </div>
         <p>
             scut
             <strong>bbs</strong>
@@ -102,7 +106,6 @@ strong {
     height: 70px;
     margin-top: 3%;
     margin-bottom: 10px;
-    background-image: url('/icons/astronauts.svg');
     background-repeat: no-repeat;
     align-self: center;
     flex-shrink: 0;
@@ -168,7 +171,6 @@ strong {
 }
 
 .close {
-    background-image: url('/icons/close.svg');
     background-repeat: no-repeat;
     position: fixed;
     right: 20px;

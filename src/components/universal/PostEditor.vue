@@ -4,7 +4,7 @@
 
         <br />
         <br />
-        <img id="load-file" src="/icons/photo.svg" />
+        <img id="load-file" src="icons/photo.svg" />
         <input type="file" id="fileSelector" accept="image/*" @change="LoadFiles" />
         <div class="editor" contenteditable="true" id="editor"></div>
         <button @click="aaa">发表文章</button>
@@ -28,7 +28,7 @@ export default class PostEditor extends Vue {
     get editorChildren() {
         const e = document.getElementById('editor');
         if (e !== null) {
-            return e.childNodes;
+            return e.children;
         } else {
             return null;
         }
@@ -36,16 +36,19 @@ export default class PostEditor extends Vue {
 
     public LoadFiles() {
         const e = document.getElementById('editor');
-        const f = document.getElementById('fileSelector');
+        const f = document.getElementById('fileSelector') as HTMLInputElement;
         if (e !== null && f !== null) {
-            const file = f.files[0];
+            let file: any = [];
+            if (f.files) {
+                file = f.files[0];
+            }
             const reader = new FileReader();
             const imgtype = (file.type as string).split('/')[1];
             reader.onloadend = () => {
                 if (reader.result) {
                     const node = document.createElement('img');
                     node.src = reader.result as string;
-                    node.style = 'max-width:50%;';
+                    node.setAttribute('style', 'max-width:50%;');
                     node.setAttribute('imagetype', imgtype);
                     e.appendChild(node);
                 }
@@ -75,6 +78,7 @@ export default class PostEditor extends Vue {
                             e.removeChild(childs[i]);
                         }
                     }
+                    console.log(res);
                 });
             }
             if (this.category === 'entertainment') {
@@ -104,20 +108,20 @@ export default class PostEditor extends Vue {
         return str.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
     }
 
-    private TransToInput(nodes: NodeListOf<ChildNode>) {
+    private TransToInput(nodes: HTMLCollection) {
         const content: ContentInput[] = [];
         for (let i = 0; i < nodes.length; i++) {
-            if (nodes[i].data) {
-                content.push({ type: 'Text', str: nodes[i].data });
-            } else if (nodes[i].innerText !== '') {
-                content.push({ type: 'Text', str: nodes[i].innerText });
-            } else if (nodes[i].src) {
+            const node = nodes[i] as HTMLElement;
+            if (node.getAttribute('data')) {
+                content.push({ type: 'Text', str: node.getAttribute('data') as string });
+            } else if (node.innerText !== '') {
+                content.push({ type: 'Text', str: node.innerText });
+            } else if (node.getAttribute('src')) {
                 content.push({
                     type: 'Picture',
-                    str: nodes[i].getAttribute('imagetype') + ' ' + this.ToUpladString(nodes[i].src),
+                    str: node.getAttribute('imagetype') + ' ' + this.ToUpladString(node.getAttribute('src') as string),
                 });
             }
-            console.log(nodes[i]);
         }
         return content;
     }

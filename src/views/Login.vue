@@ -1,7 +1,11 @@
 <template>
     <div class="login">
-        <div class="close" v-on:click="close()"></div>
-        <div class="login-astronaut"></div>
+        <div class="close" v-on:click="close()">
+            <img src="icons/close.svg" />
+        </div>
+        <div class="login-astronaut">
+            <img src="icons/astronauts.svg" />
+        </div>
         <p>scut<strong>bbs</strong></p>
         <div class="login-form">
             <div class="login-form-input">
@@ -9,14 +13,14 @@
                 <br />
                 <p>账号</p>
                 <div class="input">
-                    <img src="/icons/user.svg" style="width:16px;height:16px;" />
+                    <img src="icons/user.svg" style="width:16px;height:16px;" />
                     <input type="text" placeholder="请输入邮箱" v-model="primitiveUsername" />
                     <span>@mail.scut.edu.cn</span>
                 </div>
                 <br />
                 <p>密码</p>
                 <div class="input">
-                    <img src="/icons/password.svg" style="width:16px" />
+                    <img src="icons/password.svg" style="width:16px" />
                     <input type="password" placeholder="请输入密码" v-model="PreLogin.password" />
                 </div>
                 <br />
@@ -95,7 +99,6 @@ strong {
     height: 70px;
     margin-top: 3%;
     margin-bottom: 10px;
-    background-image: url('/icons/astronauts.svg');
     background-repeat: no-repeat;
     align-self: center;
     flex-shrink: 0;
@@ -168,7 +171,6 @@ strong {
 }
 
 .close {
-    background-image: url('/icons/close.svg');
     background-repeat: no-repeat;
     position: fixed;
     right: 20px;
