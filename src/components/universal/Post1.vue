@@ -2,6 +2,7 @@
     <div class="post">
         <h3>{{ title }}</h3>
         <Storey :author="author" :content="content" :louzhu="author.username" :date="GetTime(createTime)" />
+        <Storey v-for="(comment, index) in comments" :key="index" :author="comment.author" :content="comment.content.items" :louzhu="author.username" :date="GetTime(comment.creationTime)" />
     </div>
 </template>
 
@@ -20,6 +21,7 @@ export default class Post1 extends Vue {
     @Provide() public content: any = {};
     @Provide() public author: any = {};
     @Provide() public createTime: number = 0;
+    @Provide() public comments: any = [];
 
     get postId() {
         return this.$route.params.postId;
@@ -36,6 +38,7 @@ export default class Post1 extends Vue {
             this.content = res.content.items;
             this.author = res.author;
             this.createTime = res.createTime;
+            this.comments = res.allComments.comments;
         });
     }
 
