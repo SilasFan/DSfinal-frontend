@@ -1,3 +1,6 @@
+import sendGQL from '@/SendGQL';
+
+const SCHOOL_HEAT_INFO = `
 query SchoolHeatInfo($id: ID!) {
     schoolHeatInfo(id: $id) {
         ... on SchoolHeatInfo {
@@ -6,10 +9,6 @@ query SchoolHeatInfo($id: ID!) {
                     creationTime
                     author {
                         introduction
-                        major
-                        school
-                        grade
-                        gender
                         username
                         pictureURL
                         userId
@@ -29,7 +28,10 @@ query SchoolHeatInfo($id: ID!) {
                 totalCount
             }
             author {
+                introduction
                 userId
+                username
+                pictureURL
             }
             content {
                 items {
@@ -43,6 +45,7 @@ query SchoolHeatInfo($id: ID!) {
             }
             title
             id
+            createTime
         }
         ... on Error {
             msg
@@ -50,3 +53,12 @@ query SchoolHeatInfo($id: ID!) {
         }
     }
 }
+`;
+
+export default (id: string) =>
+    sendGQL({
+        query: SCHOOL_HEAT_INFO,
+        variables: {
+            id,
+        },
+    });

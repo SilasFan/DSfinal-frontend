@@ -35,6 +35,7 @@ export default new Router({
                         {
                             path: ':postId',
                             component: () => import('@/components/universal/Post1.vue'),
+                            props: { category: 'hot' },
                         },
                     ],
                 },
@@ -50,6 +51,7 @@ export default new Router({
                         {
                             path: ':postId',
                             component: () => import('@/components/universal/Post1.vue'),
+                            props: { category: 'entertainment' },
                         },
                     ],
                 },

@@ -1,29 +1,46 @@
 <template>
     <div class="storey">
         <div class="user">
-            <img src="/icons/user.svg" />
+            <img :src="PATH_IMG + (author.pictureURL === null ? '/content/00000032.png' : author.pictureURL)" />
             <div class="info">
-                <p>user</p>
-                <p>sign</p>
+                <p>{{ author.username }}</p>
+                <p>{{ author.introduction }}</p>
             </div>
-            <p class="main">louzhu</p>
+            <p class="main" v-if="author.username === louzhu">楼主</p>
         </div>
-        <div class="article">
-            <p>我觉得不行</p>
+        <div class="article" :id="date">
+            <div v-for="(items, index) in content" :key="index">
+                <img v-if="items.url" :src="PATH_IMG + items.url" />
+                <p v-if="items.text">{{ items.text }}</p>
+            </div>
         </div>
         <div class="bottombar">
-            <a href="#">删除</a>
-            <p>date</p>
+            <a>删除</a>
+            <p>{{ date }}</p>
             <a href="#">回复</a>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Provide } from 'vue-property-decorator';
+import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
 
 @Component({})
-export default class Storey extends Vue {}
+export default class Storey extends Vue {
+    @Prop() public author!: any;
+    @Prop() public content!: any;
+    @Prop() public louzhu!: string;
+    @Prop() public date!: string;
+    @Provide() public PATH_IMG = 'http://localhost:4000';
+
+    public RenderContent() {
+        const article = document.getElementById(this.date);
+    }
+
+    private mounted() {
+        this.RenderContent();
+    }
+}
 </script>
 
 <style scoped>

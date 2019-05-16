@@ -28,6 +28,10 @@
             <a v-for="page in PageArray" :key="page" @click="SetPage(page)" :class="{ currentpage: page === currentPage }">{{ page }}</a>
             <a v-if="currentPage !== PageCounts" @click="NextPage">&gt;</a>
         </div>
+
+        <div class="editor-father">
+            <PostEditor :category="Category" />
+        </div>
     </div>
 </template>
 
@@ -35,15 +39,20 @@
 import { Component, Vue, Provide, Watch } from 'vue-property-decorator';
 import GetHotFunc from '@/scripts/hot/AllHot';
 import GetEntertainmentFunc from '@/scripts/entertainment/AllEntertainment';
+import PostEditor from './PostEditor.vue';
 
-@Component({})
+@Component({
+    components: {
+        PostEditor,
+    },
+})
 export default class PostForm extends Vue {
     @Provide() public posts: any = [];
     @Provide() public totalCount: number = 0;
     @Provide() public currentPage: number = 1;
 
     public PostTime(postTime: Date): string {
-        const time = `${postTime.getMonth()}-${postTime.getDate()} ${postTime.getHours() < 10 ? '0' + postTime.getHours() : postTime.getHours()}:${
+        const time = `${postTime.getMonth() + 1}-${postTime.getDate()} ${postTime.getHours() < 10 ? '0' + postTime.getHours() : postTime.getHours()}:${
             postTime.getMinutes() < 10 ? '0' + postTime.getMinutes() : postTime.getMinutes()
         }`;
         return time;
@@ -105,7 +114,7 @@ export default class PostForm extends Vue {
     }
 
     private allHot(skip: number) {
-        GetHotFunc(skip, 10, 'ActiveTimeAsc').then(res => {
+        GetHotFunc(skip, 10, 'ActiveTimeDes').then(res => {
             if (res.msg) {
                 alert('network error!');
             } else {
@@ -117,7 +126,7 @@ export default class PostForm extends Vue {
     }
 
     private allEntertainment(skip: number) {
-        GetEntertainmentFunc(skip, 10, 'ActiveTimeAsc').then(res => {
+        GetEntertainmentFunc(skip, 10, 'ActiveTimeDes').then(res => {
             if (res.msg) {
                 alert('network error!');
             } else {
@@ -192,5 +201,9 @@ td {
 .currentpage {
     color: black !important;
     text-decoration: underline black !important;
+}
+
+.editor-father {
+    margin-top: 80px;
 }
 </style>
