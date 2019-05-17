@@ -1,3 +1,6 @@
+import sendGQL from '@/SendGQL';
+
+const ENTERTAINMENT_INFO = `
 query EntertainmentInfo($id: ID!) {
     entertainmentInfo(id: $id) {
         ... on EntertainmentInfo {
@@ -50,3 +53,12 @@ query EntertainmentInfo($id: ID!) {
         }
     }
 }
+`;
+
+export default (id: string) =>
+    sendGQL({
+        query: ENTERTAINMENT_INFO,
+        variables: {
+            id,
+        },
+    });

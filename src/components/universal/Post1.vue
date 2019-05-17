@@ -10,6 +10,7 @@
 import { Component, Vue, Provide } from 'vue-property-decorator';
 import Storey from '@/components/universal/Storey.vue';
 import GetSingleHotFunc from '@/scripts/hot/GetSinglePost';
+import GetSingleEntertainmentFunc from '@/scripts/entertainment/GetSinglePost';
 
 @Component({
     components: {
@@ -32,14 +33,25 @@ export default class Post1 extends Vue {
     }
 
     public GetContent() {
-        GetSingleHotFunc(this.postId).then(res => {
-            console.log(res);
-            this.title = res.title;
-            this.content = res.content.items;
-            this.author = res.author;
-            this.createTime = res.createTime;
-            this.comments = res.allComments.comments;
-        });
+        if (this.category === 'hot') {
+            GetSingleHotFunc(this.postId).then(res => {
+                console.log(res);
+                this.title = res.title;
+                this.content = res.content.items;
+                this.author = res.author;
+                this.createTime = res.createTime;
+                this.comments = res.allComments.comments;
+            });
+        } else if (this.category === 'entertainment') {
+            GetSingleEntertainmentFunc(this.postId).then(res => {
+                console.log(res);
+                this.title = res.title;
+                this.content = res.content.items;
+                this.author = res.author;
+                this.createTime = res.createTime;
+                this.comments = res.allComments.comments;
+            });
+        }
     }
 
     public GetTime(time: number) {
