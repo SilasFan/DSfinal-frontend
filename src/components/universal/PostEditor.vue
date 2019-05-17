@@ -1,5 +1,7 @@
 <template>
     <div class="post-editor">
+        <h3>发表帖子</h3>
+
         <input type="text" v-model="title" />
 
         <br />
@@ -130,9 +132,12 @@ export default class PostEditor extends Vue {
 
 <style scoped>
 .editor {
-    border: black 1px solid;
+    /*border: black 1px solid;*/
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     outline: none;
-    margin-top: 30px;
+    margin-top: 10px;
+    margin-left: 2px;
+    padding: 10px;
     height: 210px;
     font-size: 20px;
     display: flex;
@@ -141,6 +146,7 @@ export default class PostEditor extends Vue {
 }
 
 #load-file {
+    padding-left: 5px;
     width: 25px;
     height: 25px;
 }
@@ -159,8 +165,13 @@ input[type='file'] {
     margin-left: -25px;
 }
 input[type='text'] {
-    width: 100%;
+    width: 99%;
     font-size: 18px;
+    padding: 10px;
+    border: none;
+    margin-left: 2px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    outline: none;
 }
 
 button {
@@ -170,7 +181,7 @@ button {
     padding: 8px 15px 8px 15px;
     font-size: 18px;
     border-radius: 8px;
-    margin-top: 10px;
+    margin-top: 20px;
     cursor: pointer;
 }
 </style>

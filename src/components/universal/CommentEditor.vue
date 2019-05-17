@@ -1,9 +1,7 @@
 <template>
     <div class="post-editor">
-        <input type="text" v-model="title" />
 
-        <br />
-        <br />
+        <h3>评论</h3>
         <img id="load-file" src="icons/photo.svg" />
         <input type="file" id="fileSelector" accept="image/*" @change="LoadFiles" />
         <div class="editor" contenteditable="true" id="editor"></div>
@@ -20,7 +18,7 @@ import { ContentInput } from '@/scripts/hot/Create';
 
 @Component({})
 export default class PostEditor extends Vue {
-    @Provide() public postIdCommenting: string = '';
+    @Prop() public postIdCommenting: string = '';
     @State private token!: string;
     @Prop() private category!: string;
 
@@ -129,9 +127,11 @@ export default class PostEditor extends Vue {
 
 <style scoped>
 .editor {
-    border: black 1px solid;
+    /*border: black 1px solid;*/
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     outline: none;
-    margin-top: 30px;
+    margin-top: 10px;
+    margin-left: 2px;
     height: 210px;
     font-size: 20px;
     display: flex;
@@ -140,6 +140,7 @@ export default class PostEditor extends Vue {
 }
 
 #load-file {
+    padding-left: 5px;
     width: 25px;
     height: 25px;
 }
@@ -157,10 +158,6 @@ input[type='file'] {
     opacity: 0;
     margin-left: -25px;
 }
-input[type='text'] {
-    width: 100%;
-    font-size: 18px;
-}
 
 button {
     background-color: rgb(0, 0, 0);
@@ -169,7 +166,7 @@ button {
     padding: 8px 15px 8px 15px;
     font-size: 18px;
     border-radius: 8px;
-    margin-top: 10px;
+    margin-top: 20px;
     cursor: pointer;
 }
 </style>
