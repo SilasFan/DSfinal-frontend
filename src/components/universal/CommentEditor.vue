@@ -1,6 +1,5 @@
 <template>
     <div class="post-editor">
-
         <h3>评论</h3>
         <img id="load-file" src="icons/photo.svg" />
         <input type="file" id="fileSelector" accept="image/*" @change="LoadFiles" />
@@ -22,11 +21,12 @@ export default class PostEditor extends Vue {
     @Prop() private category!: string;
 
     get postIdCommenting() {
-      return this.$route.params.postId;
+        return this.$route.params.postId;
     }
 
     get editorChildren() {
         const e = document.getElementById('editor');
+        console.log(e);
         if (e !== null) {
             return e.children;
         } else {
@@ -61,7 +61,7 @@ export default class PostEditor extends Vue {
         if (this.editorChildren) {
             const cont = this.TransToInput(this.editorChildren);
             if (this.category === 'hot') {
-                    CreateHotCommentFunc(
+                CreateHotCommentFunc(
                     {
                         postIdCommenting: this.postIdCommenting,
                         content: {
@@ -72,16 +72,17 @@ export default class PostEditor extends Vue {
                 ).then(res => {
                     const e = document.getElementById('editor');
                     if (e) {
-                        const childs = e.childNodes;
-                        for (let i = 0; i < childs.length; i++) {
-                            e.removeChild(childs[i]);
+                        const length = e.childNodes.length;
+                        for (let i = 0; i < length; i++) {
+                            if (e.firstChild) {
+                                e.removeChild(e.firstChild);
+                            }
                         }
                     }
-                    console.log(res);
                 });
             }
             if (this.category === 'entertainment') {
-                     CreateEntertainmentCommentFunc(
+                CreateEntertainmentCommentFunc(
                     {
                         postIdCommenting: this.postIdCommenting,
                         content: {
@@ -92,9 +93,11 @@ export default class PostEditor extends Vue {
                 ).then(res => {
                     const e = document.getElementById('editor');
                     if (e) {
-                        const childs = e.childNodes;
-                        for (let i = 0; i < childs.length; i++) {
-                            e.removeChild(childs[i]);
+                        const length = e.childNodes.length;
+                        for (let i = 0; i < length; i++) {
+                            if (e.firstChild) {
+                                e.removeChild(e.firstChild);
+                            }
                         }
                     }
                 });
@@ -108,6 +111,16 @@ export default class PostEditor extends Vue {
 
     private TransToInput(nodes: HTMLCollection) {
         const content: ContentInput[] = [];
+        // 判断第一个是不是text
+        const e = document.getElementById('editor');
+        if (e) {
+            const firstchild = e.childNodes[0];
+            if (firstchild.textContent) {
+                content.push({ type: 'Text', str: firstchild.textContent });
+            }
+        }
+
+        // 主循环
         for (let i = 0; i < nodes.length; i++) {
             const node = nodes[i] as HTMLElement;
             if (node.getAttribute('data')) {

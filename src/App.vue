@@ -17,11 +17,12 @@ export default class App extends Vue {
 
     // 读取本地缓存的token
     private beforeMount() {
+        console.log(localStorage.getItem('token'));
         if (localStorage.getItem('token')) {
-            this.setToken(localStorage.getItem('token'));
+            this.setToken({ newToken: localStorage.getItem('token') });
         }
         if (localStorage.getItem('currentuser')) {
-            this.setCurrentUser(localStorage.getItem('currentuser'));
+            this.setCurrentUser({ CurrentUser: localStorage.getItem('currentuser') });
         }
         if (localStorage.getItem('nickname')) {
             this.setNickName(localStorage.getItem('nickname'));

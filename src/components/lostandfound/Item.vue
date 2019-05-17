@@ -1,9 +1,9 @@
 <template>
     <div class="item">
         <img v-bind:src="ImageFullUrl" class="images" />
-        <router-link to="/home/lost-and-found/items/2133">title</router-link>
-        <p><img src="icons/location.svg" class="icon" />position</p>
-        <p><img src="icons/information.svg" class="icon" />owner</p>
+        <router-link :to="itemURL">{{ name }}</router-link>
+        <p><img src="icons/location.svg" class="icon" />{{ position }}</p>
+        <p><img src="icons/information.svg" class="icon" />{{ publisher }}</p>
     </div>
 </template>
 
@@ -12,11 +12,22 @@ import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
 
 @Component({})
 export default class Item extends Vue {
+    @Prop() public position!: string;
+    @Prop() public name!: string;
+    @Prop() public publisher!: string;
+    @Prop() public id!: string;
     @Prop() private imgurl!: string;
+    @Prop() private category!: string;
+    @Provide() private IMG_URL = 'http://localhost:4000';
 
     get ImageFullUrl() {
-        return 'icons/' + this.imgurl + '.svg';
+        return this.IMG_URL + this.imgurl;
     }
+
+    get itemURL() {
+        return '/home/lost-and-found/items/' + this.id + '-' + this.category;
+    }
+
 }
 </script>
 

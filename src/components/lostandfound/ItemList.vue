@@ -2,9 +2,7 @@
     <div class="itemlist">
         <h2>{{ title }}</h2>
         <div class="items">
-            <Item imgurl="user" />
-            <Item imgurl="location" />
-            <Item imgurl="user" />
+            <Item v-for="item in Items" :key="item.id" :imgurl="item.pictureURL" :position="item.position" :publisher="item.publisher.username" :name="item.name" :id="item.id" :category="category"/>
         </div>
     </div>
 </template>
@@ -24,6 +22,10 @@ export default class ItemList extends Vue {
 
     get title() {
         return this.$attrs.title;
+    }
+
+    get category() {
+        return this.$route.name;
     }
 
     public getItems() {

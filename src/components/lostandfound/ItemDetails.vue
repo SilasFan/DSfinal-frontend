@@ -6,10 +6,10 @@
                 <img src="icons/user.svg" />
             </div>
             <div class="words">
-                <h3>title</h3>
-                <p><img src="icons/location.svg" />location</p>
-                <p><img src="icons/information.svg" />user</p>
-                <p>是一张从广州开往新疆的蓝色磁质火车票，时间是2019年4月20日</p>
+                <h3>{{ Item.name }}</h3>
+                <p><img src="icons/location.svg" />{{ Item.position }}</p>
+                <p><img src="icons/information.svg" />{{ Item.publisher.username }}</p>
+                <p>{{ Item.description }}</p>
             </div>
         </div>
     </div>
@@ -17,9 +17,37 @@
 
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator';
+import GetFoundFunc from '@/scripts/lostandfound/GetFound';
 
 @Component({})
-export default class ItemDetails extends Vue {}
+export default class ItemDetails extends Vue {
+    @Provide() public Item: any = {};
+
+    get itemID() {
+        return this.$route.params.itemId.split('-')[0];
+    }
+
+    get category() {
+        return this.$route.params.itemId.split('-')[1];
+    }
+
+    get imgUrl() {
+        return 'http://localhost:4000' + this.Item.pictureURL;
+    }
+
+    private getItem() {
+        if (this.category === 'found') {
+            GetFoundFunc(this.itemID).then(res => {
+                console.log(res);
+                this.Item = res;
+            });
+        }
+    }
+
+    private beforeMount() {
+        this.getItem();
+    }
+}
 </script>
 
 <style scoped>
