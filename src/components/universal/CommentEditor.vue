@@ -7,21 +7,20 @@
         <img id="load-file" src="icons/photo.svg" />
         <input type="file" id="fileSelector" accept="image/*" @change="LoadFiles" />
         <div class="editor" contenteditable="true" id="editor"></div>
-        <button @click="aaa">发表文章</button>
+        <button @click="CommentToPost">发表评论</button>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
 import { State, Getter, Mutation, namespace } from 'vuex-class';
-import CreateHotFunc from '@/scripts/hot/Create';
-import CreateEntertainmentFunc from '@/scripts/entertainment/Create';
-import { ContentInput, SchoolHeatInput } from '@/scripts/hot/Create';
-import { EntertainmentInput } from '@/scripts/entertainment/Create';
+import CreateHotCommentFunc from '@/scripts/hot/CreateComment';
+import CreateEntertainmentCommentFunc from '@/scripts/hot/CreateComment';
+import { ContentInput } from '@/scripts/hot/Create';
 
 @Component({})
 export default class PostEditor extends Vue {
-    @Provide() public title: string = '';
+    @Provide() public postIdCommenting: string = '';
     @State private token!: string;
     @Prop() private category!: string;
 
@@ -57,20 +56,20 @@ export default class PostEditor extends Vue {
         }
     }
 
-    public aaa() {
+    public CommentToPost() {
         if (this.editorChildren) {
             const cont = this.TransToInput(this.editorChildren);
             if (this.category === 'hot') {
-                CreateHotFunc(
+                    CreateHotCommentFunc(
                     {
-                        title: this.title,
+                        postIdCommenting: this.postIdCommenting,
                         content: {
                             elems: cont,
                         },
                     },
                     this.token,
                 ).then(res => {
-                    this.title = '';
+                    this.postIdCommenting = '';
                     const e = document.getElementById('editor');
                     if (e) {
                         const childs = e.childNodes;
@@ -82,16 +81,16 @@ export default class PostEditor extends Vue {
                 });
             }
             if (this.category === 'entertainment') {
-                CreateEntertainmentFunc(
+                     CreateEntertainmentCommentFunc(
                     {
-                        title: this.title,
+                        postIdCommenting: this.postIdCommenting,
                         content: {
                             elems: cont,
                         },
                     },
                     this.token,
                 ).then(res => {
-                    this.title = '';
+                    this.postIdCommenting = '';
                     const e = document.getElementById('editor');
                     if (e) {
                         const childs = e.childNodes;
