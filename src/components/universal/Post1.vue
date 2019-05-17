@@ -3,18 +3,21 @@
         <h3>{{ title }}</h3>
         <Storey :author="author" :content="content" :louzhu="author.username" :date="GetTime(createTime)" />
         <Storey v-for="(comment, index) in comments" :key="index" :author="comment.author" :content="comment.content.items" :louzhu="author.username" :date="GetTime(comment.creationTime)" />
+        <CommentEditor :category="category" />
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator';
 import Storey from '@/components/universal/Storey.vue';
+import CommentEditor from '@/components/universal/CommentEditor.vue';
 import GetSingleHotFunc from '@/scripts/hot/GetSinglePost';
 import GetSingleEntertainmentFunc from '@/scripts/entertainment/GetSinglePost';
 
 @Component({
     components: {
         Storey,
+        CommentEditor,
     },
 })
 export default class Post1 extends Vue {
