@@ -14,15 +14,18 @@ export default class App extends Vue {
     @Mutation public setToken: any;
     @Mutation public setCurrentUser: any;
     @Mutation public setNickName: any;
+    @State public CurrentUser!: string;
+    @State public NickName!: string;
+    @State private token!: string;
 
     // 读取本地缓存的token
-    private beforeMount() {
+    private mounted() {
         console.log(localStorage.getItem('token'));
         if (localStorage.getItem('token')) {
-            this.setToken({ newToken: localStorage.getItem('token') });
+            this.setToken(localStorage.getItem('token'));
         }
         if (localStorage.getItem('currentuser')) {
-            this.setCurrentUser({ CurrentUser: localStorage.getItem('currentuser') });
+            this.setCurrentUser(localStorage.getItem('currentuser'));
         }
         if (localStorage.getItem('nickname')) {
             this.setNickName(localStorage.getItem('nickname'));

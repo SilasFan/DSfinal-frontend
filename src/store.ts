@@ -16,17 +16,16 @@ export default new Vuex.Store({
     },
     mutations: {
         setToken(state, payload) {
-            state.token = payload.newtoken;
-            localStorage.setItem('token', state.token);
-            console.log(state.token);
+            state.token = payload;
+            window.localStorage.setItem('token', payload);
         },
         setCurrentUser(state, payload) {
-            state.CurrentUser = payload.username;
-            localStorage.setItem('currentuser', state.CurrentUser);
+            state.CurrentUser = payload;
+            window.localStorage.setItem('currentuser', payload);
         },
         setNickName(state, payload) {
             state.NickName = payload;
-            localStorage.setItem('nickname', payload);
+            window.localStorage.setItem('nickname', payload);
         },
         logout(state) {
             state.token = '';

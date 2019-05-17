@@ -70,8 +70,8 @@ export default class Login extends Vue {
                 alert(res.msg);
             }
             if (res.token) {
-                this.setToken({ newtoken: res.token });
-                this.setCurrentUser({ username: this.PreLogin.username });
+                this.setToken(res.token);
+                this.setCurrentUser(this.PreLogin.username);
                 this.$router.go(-1);
             }
         });
