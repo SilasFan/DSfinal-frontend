@@ -18,9 +18,12 @@ import { ContentInput } from '@/scripts/hot/Create';
 
 @Component({})
 export default class PostEditor extends Vue {
-    @Prop() public postIdCommenting: string = '';
     @State private token!: string;
     @Prop() private category!: string;
+
+    get postIdCommenting() {
+      return this.$route.params.postId;
+    }
 
     get editorChildren() {
         const e = document.getElementById('editor');
@@ -67,7 +70,6 @@ export default class PostEditor extends Vue {
                     },
                     this.token,
                 ).then(res => {
-                    this.postIdCommenting = '';
                     const e = document.getElementById('editor');
                     if (e) {
                         const childs = e.childNodes;
@@ -88,7 +90,6 @@ export default class PostEditor extends Vue {
                     },
                     this.token,
                 ).then(res => {
-                    this.postIdCommenting = '';
                     const e = document.getElementById('editor');
                     if (e) {
                         const childs = e.childNodes;
