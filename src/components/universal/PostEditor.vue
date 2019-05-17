@@ -83,7 +83,7 @@ export default class PostEditor extends Vue {
                             }
                         }
                     }
-                    console.log(res);
+                    this.$emit('afterpost');
                 });
             }
             if (this.category === 'entertainment') {
@@ -106,6 +106,7 @@ export default class PostEditor extends Vue {
                             }
                         }
                     }
+                    this.$emit('afterpost');
                 });
             }
         }

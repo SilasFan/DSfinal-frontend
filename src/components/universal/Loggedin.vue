@@ -94,6 +94,7 @@ export default class Loggedin extends Vue {
         getInfo(this.token).then(res => {
             if (res.msg) {
                 console.log(res.msg);
+                this.logout();
             } else {
                 this.setNickName(res.username);
                 this.headUrl = res.pictureURL;

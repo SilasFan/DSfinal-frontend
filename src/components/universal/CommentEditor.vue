@@ -12,7 +12,7 @@
 import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
 import { State, Getter, Mutation, namespace } from 'vuex-class';
 import CreateHotCommentFunc from '@/scripts/hot/CreateComment';
-import CreateEntertainmentCommentFunc from '@/scripts/hot/CreateComment';
+import CreateEntertainmentCommentFunc from '@/scripts/entertainment/CreateComment';
 import { ContentInput } from '@/scripts/hot/Create';
 
 @Component({})
@@ -26,7 +26,6 @@ export default class PostEditor extends Vue {
 
     get editorChildren() {
         const e = document.getElementById('editor');
-        console.log(e);
         if (e !== null) {
             return e.children;
         } else {
@@ -70,6 +69,7 @@ export default class PostEditor extends Vue {
                     },
                     this.token,
                 ).then(res => {
+                    console.log(res);
                     const e = document.getElementById('editor');
                     if (e) {
                         const length = e.childNodes.length;
@@ -79,9 +79,9 @@ export default class PostEditor extends Vue {
                             }
                         }
                     }
+                    this.$emit('aftercomment');
                 });
-            }
-            if (this.category === 'entertainment') {
+            } else if (this.category === 'entertainment') {
                 CreateEntertainmentCommentFunc(
                     {
                         postIdCommenting: this.postIdCommenting,
@@ -92,6 +92,7 @@ export default class PostEditor extends Vue {
                     this.token,
                 ).then(res => {
                     const e = document.getElementById('editor');
+                    console.log(res);
                     if (e) {
                         const length = e.childNodes.length;
                         for (let i = 0; i < length; i++) {
@@ -100,6 +101,7 @@ export default class PostEditor extends Vue {
                             }
                         }
                     }
+                    this.$emit('aftercomment');
                 });
             }
         }

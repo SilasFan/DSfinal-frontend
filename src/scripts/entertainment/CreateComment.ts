@@ -1,5 +1,5 @@
 import sendGQL from '@/SendGQL';
-import {ContentInput} from "@/scripts/hot/Create";
+import { ContentInput } from '@/scripts/hot/Create';
 
 const CREATE_ENTERTAINMENT_COMMENT = `
   mutation CreateEntertainmentComment($entertainmentCommentInput: EntertainmentCommentInput!) {
@@ -16,17 +16,17 @@ const CREATE_ENTERTAINMENT_COMMENT = `
 `;
 
 export interface EntertainmentCommentInput {
-  postIdCommenting: string;
-  content: {
-    elems: ContentInput[];
-  };
+    postIdCommenting: string;
+    content: {
+        elems: ContentInput[];
+    };
 }
 
 export default (entertainmentCommentInput: EntertainmentCommentInput, auth: string) =>
-  sendGQL({
-    query: CREATE_ENTERTAINMENT_COMMENT,
-    variables: {
-      entertainmentCommentInput,
-    },
-    auth,
-  });
+    sendGQL({
+        query: CREATE_ENTERTAINMENT_COMMENT,
+        variables: {
+            entertainmentCommentInput,
+        },
+        auth,
+    });

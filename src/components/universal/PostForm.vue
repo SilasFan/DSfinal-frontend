@@ -30,7 +30,7 @@
         </div>
 
         <div class="editor-father">
-            <PostEditor :category="Category" />
+            <PostEditor :category="Category" v-on:afterpost="pageChange" />
         </div>
     </div>
 </template>

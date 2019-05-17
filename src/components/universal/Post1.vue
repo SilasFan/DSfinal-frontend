@@ -3,7 +3,7 @@
         <h3>{{ title }}</h3>
         <Storey :author="author" :content="content" :louzhu="author.username" :date="GetTime(createTime)" />
         <Storey v-for="(comment, index) in comments" :key="index" :author="comment.author" :content="comment.content.items" :louzhu="author.username" :date="GetTime(comment.creationTime)" />
-        <CommentEditor :category="category" />
+        <CommentEditor :category="category" v-on:aftercomment="GetContent" />
     </div>
 </template>
 
