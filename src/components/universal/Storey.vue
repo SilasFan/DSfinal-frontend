@@ -95,6 +95,9 @@ export default class Storey extends Vue {
     margin-top: 30px;
     margin-bottom: 20px;
 }
+.article img {
+    max-width: 90%;
+}
 
 .bottombar {
     display: flex;

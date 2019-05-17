@@ -22,7 +22,7 @@
             </li>
             <li>
                 <div class="userinfo" @click="showUserMenu">
-                    <img src="icons/user.1.svg" />
+                    <img :src="imgUrl" />
                     <p>{{ NickName }}</p>
                 </div>
                 <div class="message-content" id="userinfo" v-if="ShowUserMenu">
@@ -82,14 +82,21 @@ export default class Loggedin extends Vue {
         });
     }
 
-    // 获取nickname和imageurl
-    // TODO:这里没有处理imgurl，等api弄好了再写
+    get imgUrl() {
+        if (this.headUrl) {
+            return 'http://localhost:4000' + this.headUrl;
+        } else {
+            return 'icons/user.1.svg';
+        }
+    }
+
     public getNickname() {
         getInfo(this.token).then(res => {
             if (res.msg) {
                 console.log(res.msg);
             } else {
                 this.setNickName(res.username);
+                this.headUrl = res.pictureURL;
             }
         });
     }

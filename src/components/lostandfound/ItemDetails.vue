@@ -3,7 +3,7 @@
         <h2>物品详情</h2>
         <div class="content">
             <div class="image">
-                <img src="icons/user.svg" />
+                <img :src="imgUrl" />
             </div>
             <div class="words">
                 <h3>{{ Item.name }}</h3>
