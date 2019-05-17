@@ -27,6 +27,7 @@ query Latests {
                     createTime
                     author {
                         username
+                        userId
                     }
                     title
                     id

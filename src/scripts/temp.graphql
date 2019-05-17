@@ -1,48 +1,14 @@
-query EntertainmentInfo($id: ID!) {
-    entertainmentInfo(id: $id) {
-        ... on EntertainmentInfo {
-            allComments {
-                comments {
-                    creationTime
-                    author {
-                        introduction
-                        username
-                        pictureURL
-                        userId
-                    }
-                    content {
-                        items {
-                            ... on Paragraph {
-                                text
-                            }
-                            ... on Picture {
-                                url
-                            }
-                        }
-                    }
-                    id
-                }
-                totalCount
+query AllLectures($skip: Long, $first: Long) {
+    allLectures(skip: $skip, first: $first) {
+        ... on MultiLectures {
+            lectures {
+                note
+                lecturer
+                time
+                position
+                title
             }
-            createTime
-            author {
-                introduction
-                username
-                pictureURL
-                userId
-            }
-            content {
-                items {
-                    ... on Paragraph {
-                        text
-                    }
-                    ... on Picture {
-                        url
-                    }
-                }
-            }
-            title
-            id
+            totalCount
         }
         ... on Error {
             msg

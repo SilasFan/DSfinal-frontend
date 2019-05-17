@@ -1,11 +1,11 @@
 <template>
     <div class="anew">
         <p>
-            <router-link to="#">{{ anews.title }}</router-link>
+            <router-link :to="postURL">{{ anews.title }}</router-link>
         </p>
         <div>
-            <img src="icons/user.svg" /><span>{{ anews.post_user }}</span> <img src="icons/hot.svg" /><span>{{ anews.hot }}</span> <img src="icons/clock.svg" /><span>{{
-                anews.post_date.getMonth() + '-' + anews.post_date.getDate() + ' ' + anews.post_date.getHours() + ':' + anews.post_date.getMinutes()
+            <img src="icons/user.svg" /><span>{{ anews.author.username }}</span> <img src="icons/hot.svg" /><span>{{ anews.heat }}</span> <img src="icons/clock.svg" /><span>{{
+                PostTime(TimeTrans(anews.createTime))
             }}</span>
         </div>
     </div>
@@ -13,35 +13,28 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Provide } from 'vue-property-decorator';
-import { getLatestFunc } from '@/scripts/main/Latest';
-
-interface New {
-    title: string;
-    post_user: string;
-    post_date: Date;
-    hot: number;
-}
 
 @Component({})
 export default class News extends Vue {
-    @Prop() public anews!: New;
-    @Provide() public News!: any;
+    @Prop() public anews!: any;
 
-    // TODO:数据还没有补上
-    public getLatest() {
-        const This = this;
-        getLatestFunc().then(res => {
-            if (res.msg) {
-                console.log(res.msg);
-            } else {
-                this.News = res.latest;
-                console.log(res);
-            }
-        });
+    public TimeTrans(time: number) {
+        return new Date(time);
     }
 
-    public beforeMount() {
-        this.getLatest();
+    public PostTime(postTime: Date): string {
+        const time = `${postTime.getMonth() + 1}-${postTime.getDate()} ${postTime.getHours() < 10 ? '0' + postTime.getHours() : postTime.getHours()}:${
+            postTime.getMinutes() < 10 ? '0' + postTime.getMinutes() : postTime.getMinutes()
+        }`;
+        return time;
+    }
+
+    get postURL() {
+        if (this.anews.author.userId) {
+            return '/home/hot/' + this.anews.id;
+        } else {
+            return '/home/entertainment/' + this.anews.id;
+        }
     }
 }
 
@@ -54,7 +47,7 @@ const da: Date = new Date();
     border-bottom: #dfdfdf 1px solid;
 }
 p {
-    margin-top: 10px;
+    margin-top: 20px;
 }
 img {
     width: 15px;

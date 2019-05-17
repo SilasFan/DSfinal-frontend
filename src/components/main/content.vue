@@ -1,10 +1,10 @@
 <template>
     <div class="main-content">
         <h2>今日头条</h2>
-        <span></span>
+        <img src="icons/user.svg" />
         <h2>最新动态</h2>
         <div class="news">
-            <News v-for="New in news" :key="New.title" v-bind:anews="New" />
+            <News v-for="(New, index) in latest" :key="index" :anews="New" />
         </div>
     </div>
 </template>
@@ -12,13 +12,7 @@
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator';
 import News from './news.vue';
-
-interface New {
-    title: string;
-    post_user: string;
-    post_date: Date;
-    hot: number;
-}
+import { getLatestFunc } from '@/scripts/main/Latest';
 
 @Component({
     components: {
@@ -26,14 +20,23 @@ interface New {
     },
 })
 export default class Content extends Vue {
-    @Provide() public news: New[] = [
-        {
-            title: 'test111',
-            post_user: 'silas',
-            post_date: new Date(9102, 10, 11, 10, 28),
-            hot: 120,
-        },
-    ];
+    @Provide() public latest: any = [];
+
+    public getLatest() {
+        const This = this;
+        getLatestFunc().then(res => {
+            if (res.msg) {
+                console.log(res.msg);
+            } else {
+                this.latest = res.latests;
+                console.log(res);
+            }
+        });
+    }
+
+    public beforeMount() {
+        this.getLatest();
+    }
 }
 </script>
 
@@ -52,6 +55,10 @@ export default class Content extends Vue {
 .main-content h2 {
     padding-bottom: 15px;
     box-shadow: #d8d8d852 0px 3px 0px;
+}
+
+.news {
+    margin-bottom: 40px;
 }
 
 span {

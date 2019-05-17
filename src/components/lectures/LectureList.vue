@@ -1,14 +1,14 @@
 <template>
     <div class="result">
         <h2>讲座动态</h2>
-        <div class="lectures">
+        <div class="lectures" v-for="lecture in Lectures" :key="lecture.id">
             <span class="circle"></span>
-            <p class="date">2019-3-23 19:00</p>
+            <p class="date">{{ PostTime(TimeTrans(lecture.time)) }}</p>
             <div class="content">
-                <p>讲座标题</p>
-                <p>主讲人</p>
-                <p>地点：</p>
-                <p>备注：</p>
+                <p>{{ lecture.title }}</p>
+                <p>主讲人：{{ lecture.lecturer }}</p>
+                <p>地点：{{ lecture.position }}</p>
+                <p>备注：{{ lecture.note }}</p>
             </div>
         </div>
     </div>
@@ -16,9 +16,38 @@
 
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator';
+import GetLectureFunc from '@/scripts/study/GetLectures';
 
 @Component({})
-export default class Result extends Vue {}
+export default class Result extends Vue {
+    @Provide() public Lectures: any = [];
+
+    public TimeTrans(time: number) {
+        return new Date(time);
+    }
+
+    public PostTime(postTime: Date): string {
+        const time = `${postTime.getFullYear()}-${postTime.getMonth() + 1}-${postTime.getDate()} ${postTime.getHours() < 10 ? '0' + postTime.getHours() : postTime.getHours()}:${
+            postTime.getMinutes() < 10 ? '0' + postTime.getMinutes() : postTime.getMinutes()
+        }`;
+        return time;
+    }
+
+    private getLectures() {
+        GetLectureFunc(0, 10).then(res => {
+            if (res.msg) {
+                alert(res.msg);
+            } else {
+                console.log(res);
+                this.Lectures = res.lectures;
+            }
+        });
+    }
+
+    private beforeMount() {
+        this.getLectures();
+    }
+}
 </script>
 
 <style scoped>

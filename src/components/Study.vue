@@ -16,5 +16,6 @@ export default class Study extends Vue {}
     width: 100%;
     height: 100%;
     display: flex;
+    overflow-y: auto;
 }
 </style>

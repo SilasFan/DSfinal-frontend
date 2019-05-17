@@ -27,6 +27,7 @@ export default class RightBar extends Vue {
                 console.log(res.msg);
             } else {
                 This.hotest = res.hots;
+                console.log(res);
             }
         });
     }
