@@ -18,6 +18,7 @@
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator';
 import GetFoundFunc from '@/scripts/lostandfound/GetFound';
+import GetLostFunc from '@/scripts/lostandfound/GetLost';
 
 @Component({})
 export default class ItemDetails extends Vue {
@@ -39,6 +40,10 @@ export default class ItemDetails extends Vue {
         if (this.category === 'found') {
             GetFoundFunc(this.itemID).then(res => {
                 console.log(res);
+                this.Item = res;
+            });
+        } else if (this.category === 'lost') {
+            GetLostFunc(this.itemID).then(res => {
                 this.Item = res;
             });
         }
