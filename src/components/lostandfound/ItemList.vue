@@ -12,6 +12,7 @@
 <script lang="ts">
 import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
 import Item from '@/components/lostandfound/Item.vue';
+import AllFoundsFunc from '@/scripts/lostandfound/AllFounds';
 
 @Component({
     components: {
@@ -19,8 +20,21 @@ import Item from '@/components/lostandfound/Item.vue';
     },
 })
 export default class ItemList extends Vue {
+    @Provide() public Items: any = [];
+
     get title() {
         return this.$attrs.title;
+    }
+
+    public getItems() {
+        AllFoundsFunc().then(res => {
+            console.log(res);
+            this.Items = res.founds;
+        });
+    }
+
+    private beforeMount() {
+        this.getItems();
     }
 }
 </script>
