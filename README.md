@@ -1,4 +1,5 @@
-# frontend
+# 嗯，此项目暂时废弃
+## 前端的确没人权
 
 ## Project setup
 ```
