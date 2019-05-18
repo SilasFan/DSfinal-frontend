@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="bottombar">
-            <a>删除</a>
+            <a v-if="NickName === author.username" @click="deleteComment">删除</a>
             <p>{{ date }}</p>
             <a href="#">回复</a>
         </div>
@@ -25,6 +25,7 @@
 <script lang="ts">
 import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
 import { State, Getter, Mutation, namespace } from 'vuex-class';
+import DeleteHotCommentFunc from '@/scripts/hot/DeleteComment';
 
 @Component({})
 export default class Storey extends Vue {
@@ -32,11 +33,25 @@ export default class Storey extends Vue {
     @Prop() public content!: any;
     @Prop() public louzhu!: string;
     @Prop() public date!: string;
+    @Prop() public cmmid!: string;
     @Provide() public PATH_IMG = 'http://localhost:4000';
     @State public CurrentUser!: any;
+    @State public NickName!: any;
+    @State public token!: any;
+
+    get postId() {
+        return this.$route.params.postId;
+    }
 
     public RenderContent() {
         const article = document.getElementById(this.date);
+    }
+
+    public deleteComment(cmmid: string) {
+        DeleteHotCommentFunc(this.postId, this.cmmid, this.token).then(res => {
+            console.log(res);
+            this.$emit('delete');
+        });
     }
 
     private mounted() {
@@ -113,5 +128,6 @@ export default class Storey extends Vue {
 .bottombar a {
     text-decoration: none;
     color: #878787;
+    cursor: pointer;
 }
 </style>
