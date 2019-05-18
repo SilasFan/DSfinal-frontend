@@ -38,7 +38,7 @@ export default class Post1 extends Vue {
     public GetContent() {
         if (this.category === 'hot') {
           // FIXME: 分页
-            GetSingleHotFunc(this.postId, null, null).then(res => {
+            GetSingleHotFunc(this.postId, 0, 10).then(res => {
                 console.log(res);
                 this.title = res.title;
                 this.content = res.content.items;
@@ -48,7 +48,7 @@ export default class Post1 extends Vue {
             });
         } else if (this.category === 'entertainment') {
           // FIXME: 分页
-            GetSingleEntertainmentFunc(this.postId, null, null).then(res => {
+            GetSingleEntertainmentFunc(this.postId, 0, 10).then(res => {
                 console.log(res);
                 this.title = res.title;
                 this.content = res.content.items;
