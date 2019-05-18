@@ -1,10 +1,10 @@
 import sendGQL from '@/SendGQL';
 
 const SCHOOL_HEAT_INFO = `
-query SchoolHeatInfo($id: ID!) {
+query SchoolHeatInfo($id: ID!, $skip: Long, $first: Long) {
     schoolHeatInfo(id: $id) {
         ... on SchoolHeatInfo {
-            allComments {
+            allComments(skip: $skip, first: $first) {
                 comments {
                     creationTime
                     author {
@@ -55,10 +55,12 @@ query SchoolHeatInfo($id: ID!) {
 }
 `;
 
-export default (id: string) =>
+export default (id: string, skip: number, first: number) =>
     sendGQL({
         query: SCHOOL_HEAT_INFO,
         variables: {
             id,
+            skip,
+            first
         },
     });

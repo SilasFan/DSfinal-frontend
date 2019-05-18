@@ -1,10 +1,10 @@
 import sendGQL from '@/SendGQL';
 
 const ENTERTAINMENT_INFO = `
-query EntertainmentInfo($id: ID!) {
+query EntertainmentInfo($id: ID!, $skip: Long, $first: Long) {
     entertainmentInfo(id: $id) {
         ... on EntertainmentInfo {
-            allComments {
+            allComments(skip: $skip, first: $first) {
                 comments {
                     creationTime
                     author {
@@ -55,10 +55,12 @@ query EntertainmentInfo($id: ID!) {
 }
 `;
 
-export default (id: string) =>
+export default (id: string, skip: number, first: number) =>
     sendGQL({
         query: ENTERTAINMENT_INFO,
         variables: {
             id,
+            skip,
+            first
         },
     });
