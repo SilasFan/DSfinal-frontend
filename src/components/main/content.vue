@@ -1,7 +1,8 @@
 <template>
     <div class="main-content">
         <h2>今日头条</h2>
-        <img src="icons/user.svg" />
+        <img :src="touTiaoURL" />
+        <router-link to="/home/news">{{ toutiao.title }}</router-link>
         <h2>最新动态</h2>
         <div class="news">
             <News v-for="(New, index) in latest" :key="index" :anews="New" />
@@ -13,6 +14,7 @@
 import { Component, Vue, Provide } from 'vue-property-decorator';
 import News from './news.vue';
 import { getLatestFunc } from '@/scripts/main/Latest';
+import GetNewsFunc from '@/scripts/main/News';
 
 @Component({
     components: {
@@ -21,6 +23,7 @@ import { getLatestFunc } from '@/scripts/main/Latest';
 })
 export default class Content extends Vue {
     @Provide() public latest: any = [];
+    @Provide() public toutiao: any = {};
 
     public getLatest() {
         const This = this;
@@ -34,8 +37,24 @@ export default class Content extends Vue {
         });
     }
 
+    public getNews() {
+        GetNewsFunc().then(res => {
+            if (res.msg) {
+                console.log(res.msg);
+            } else {
+                console.log(res);
+                this.toutiao = res.newss[0];
+            }
+        });
+    }
+
+    get touTiaoURL() {
+        return 'http://localhost:4000' + this.toutiao.pictureURL;
+    }
+
     public beforeMount() {
         this.getLatest();
+        this.getNews();
     }
 }
 </script>
@@ -61,15 +80,18 @@ export default class Content extends Vue {
     margin-bottom: 40px;
 }
 
-span {
-    width: 200px;
-    height: 400px;
-    background-color: aqua;
-    align-self: center;
-}
-
 img {
     width: 200px;
     height: 200px;
+    align-self: center;
+}
+a {
+    align-self: center;
+    text-decoration: none;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.507);
+    width: 100%;
+    text-align: center;
+    padding: 8px 0px 8px 0px;
 }
 </style>

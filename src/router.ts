@@ -156,6 +156,11 @@ export default new Router({
                     path: 'letters',
                     component: () => import('@/components/Letter.vue'),
                 },
+                {
+                    path: 'news',
+                    name: 'news',
+                    component: () => import('@/components/universal/Toutiao.vue'),
+                },
             ],
         },
         {
