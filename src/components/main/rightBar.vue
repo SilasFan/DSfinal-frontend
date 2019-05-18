@@ -25,7 +25,7 @@ export default class RightBar extends Vue {
         if (hot.heat) {
             return '/home/hot/' + hot.id;
         } else {
-            return '/home/hot/' + hot.id;
+            return '/home/entertainment/' + hot.id;
         }
     }
 

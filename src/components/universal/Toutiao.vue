@@ -44,6 +44,7 @@ export default class Toutiao extends Vue {
 <style scoped>
 .toutiao {
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     margin-bottom: 50px;

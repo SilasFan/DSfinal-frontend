@@ -27,7 +27,6 @@ export default class Item extends Vue {
     get itemURL() {
         return '/home/lost-and-found/items/' + this.id + '-' + this.category;
     }
-
 }
 </script>
 
@@ -41,10 +40,13 @@ export default class Item extends Vue {
     margin-right: 60px;
     margin-bottom: 40px;
 }
+.item img {
+    max-height: 333px;
+}
 .iamges {
-    width: 333px;
     margin-bottom: 20px;
 }
+
 .item a {
     font-size: 20px;
     margin-bottom: 5px;

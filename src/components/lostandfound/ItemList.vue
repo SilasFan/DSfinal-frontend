@@ -57,6 +57,7 @@ export default class ItemList extends Vue {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    margin-bottom: 30px;
 }
 
 h2 {
