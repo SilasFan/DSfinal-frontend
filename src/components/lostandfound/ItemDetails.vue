@@ -81,10 +81,14 @@ h2 {
     text-align: left;
 }
 .image {
-    width: 300px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
     flex-shrink: 0;
 }
+.image img {
+    max-width: 100%;
+}
+
 .words {
     margin-left: 160px;
 }

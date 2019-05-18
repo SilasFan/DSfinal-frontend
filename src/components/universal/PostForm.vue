@@ -25,7 +25,11 @@
 
         <div class="page-divide" v-if="PageCounts !== 1">
             <a v-if="currentPage !== 1" @click="LastPage">&lt;</a>
-            <a v-for="page in PageArray" :key="page" @click="SetPage(page)" :class="{ currentpage: page === currentPage }">{{ page }}</a>
+            <a v-if="currentPage !== 1" @click="SetPage(1)">1</a>
+            <a v-if="currentPage > 2">...</a>
+            <a class="currentpage">{{ currentPage }}</a>
+            <a v-if="currentPage < PageCounts - 1">...</a>
+            <a v-if="currentPage !== PageCounts" @click="SetPage(PageCounts)">{{ PageCounts }}</a>
             <a v-if="currentPage !== PageCounts" @click="NextPage">&gt;</a>
         </div>
 
@@ -83,14 +87,6 @@ export default class PostForm extends Vue {
         } else {
             return a + 1;
         }
-    }
-
-    get PageArray() {
-        const arr: number[] = [];
-        for (let i = 1; i <= this.PageCounts; i++) {
-            arr.push(i);
-        }
-        return arr;
     }
 
     // 监听page改变

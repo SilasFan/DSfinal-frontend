@@ -12,6 +12,7 @@ query hotest{
             ... on SchoolHeatInfo {
               id
               title
+              heat
             }
             ... on EntertainmentInfo {
               id

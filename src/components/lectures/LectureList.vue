@@ -15,12 +15,37 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Provide } from 'vue-property-decorator';
+import { Component, Vue, Provide, Watch } from 'vue-property-decorator';
 import GetLectureFunc from '@/scripts/study/GetLectures';
 
 @Component({})
 export default class Result extends Vue {
     @Provide() public Lectures: any = [];
+    @Provide() public totalCount: number = 0;
+    @Provide() public currentPage: number = 1;
+
+    public LastPage() {
+        this.currentPage -= 1;
+    }
+    public NextPage() {
+        this.currentPage += 1;
+    }
+    public SetPage(page: number) {
+        this.currentPage = page;
+    }
+
+    get PageCounts() {
+        const a = (this.totalCount - (this.totalCount % 10)) / 10;
+        if (this.totalCount % 10 === 0) {
+            return a;
+        } else {
+            return a + 1;
+        }
+    }
+
+    // 监听page改变
+    @Watch('currentPage')
+    public pageChange() {}
 
     public TimeTrans(time: number) {
         return new Date(time);
@@ -33,8 +58,8 @@ export default class Result extends Vue {
         return time;
     }
 
-    private getLectures() {
-        GetLectureFunc(0, 10).then(res => {
+    private getLectures(first: number, skip: number) {
+        GetLectureFunc(first, skip).then(res => {
             if (res.msg) {
                 alert(res.msg);
             } else {
@@ -45,7 +70,7 @@ export default class Result extends Vue {
     }
 
     private beforeMount() {
-        this.getLectures();
+        this.getLectures(0, 10);
     }
 }
 </script>

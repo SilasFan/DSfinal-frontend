@@ -24,6 +24,7 @@
 
 <script lang="ts">
 import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
+import { State, Getter, Mutation, namespace } from 'vuex-class';
 
 @Component({})
 export default class Storey extends Vue {
@@ -32,6 +33,7 @@ export default class Storey extends Vue {
     @Prop() public louzhu!: string;
     @Prop() public date!: string;
     @Provide() public PATH_IMG = 'http://localhost:4000';
+    @State public CurrentUser!: any;
 
     public RenderContent() {
         const article = document.getElementById(this.date);

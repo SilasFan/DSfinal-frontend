@@ -2,7 +2,7 @@
     <div class="itemlist">
         <h2>{{ title }}</h2>
         <div class="items">
-            <Item v-for="item in Items" :key="item.id" :imgurl="item.pictureURL" :position="item.position" :publisher="item.publisher.username" :name="item.name" :id="item.id" :category="category"/>
+            <Item v-for="item in Items" :key="item.id" :imgurl="item.pictureURL" :position="item.position" :publisher="item.publisher.username" :name="item.name" :id="item.id" :category="category" />
         </div>
     </div>
 </template>
@@ -11,6 +11,7 @@
 import { Component, Vue, Provide, Prop } from 'vue-property-decorator';
 import Item from '@/components/lostandfound/Item.vue';
 import AllFoundsFunc from '@/scripts/lostandfound/AllFounds';
+import AllLOstFunc from '@/scripts/lostandfound/AllLost';
 
 @Component({
     components: {
@@ -29,10 +30,17 @@ export default class ItemList extends Vue {
     }
 
     public getItems() {
-        AllFoundsFunc().then(res => {
-            console.log(res);
-            this.Items = res.founds;
-        });
+        if (this.category === 'found') {
+            AllFoundsFunc().then(res => {
+                console.log(res);
+                this.Items = res.founds;
+            });
+        } else if (this.category === 'lost') {
+            AllLOstFunc().then(res => {
+                console.log(res);
+                this.Items = res.losts;
+            });
+        }
     }
 
     private beforeMount() {
